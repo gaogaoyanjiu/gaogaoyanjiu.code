@@ -116,7 +116,7 @@
 </head>
     <body>
     <img alt="" src="img/qq.jpg" width="50px" height="50px">
-    <img alt="" src="img/znjj.jpg">
+    <img alt="" src="img/znjj.png">
     <img alt="" src="img/timg.jpg" >
     <img alt="" src="img/aaa.jpg" >
     <img alt="" src= "img/bbb.jpg">
