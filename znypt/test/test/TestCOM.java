@@ -19,6 +19,7 @@ public class TestCOM {
 	/**
 	 * 测试得到com3串口列表
 	 */
+	
 	@Test
 	public  void TestgetCOM3List() {
 		List<String> com3List = COM3Utils.getCOM3List();

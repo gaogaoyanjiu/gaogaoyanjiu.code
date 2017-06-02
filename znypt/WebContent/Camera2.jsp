@@ -13,9 +13,11 @@
 </head> 
 <body>  
         <input type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia();" /><br />  
-        <video height="120px" autoplay="autoplay"></video><hr />  
+        <!-- <video height="120px" autoplay="autoplay"></video><hr /> -->  
+        <video height="240px" width="360px" autoplay="autoplay"></video><hr />  
         <input type="button" title="拍照" value="拍照" onclick="getPhoto();" /><br />  
-        <canvas id="canvas1" height="120px" ></canvas><hr />  
+        <!-- <canvas id="canvas1" height="120px" ></canvas><hr />  --> 
+        <canvas id="canvas1" height="240px" ></canvas><hr />  
         <input type="button" title="视频" value="视频" onclick="getVedio();" /><br />  
         <canvas id="canvas2" height="120px"></canvas>  
       
@@ -110,6 +112,7 @@
       
             //拍照  
             function getPhoto() {  
+                /* context1.drawImage(video, 0, 0,90,120); //将video对象内指定的区域捕捉绘制到画布上指定的区域，实现拍照。   */
                 context1.drawImage(video, 0, 0,90,120); //将video对象内指定的区域捕捉绘制到画布上指定的区域，实现拍照。  
             }  
       
