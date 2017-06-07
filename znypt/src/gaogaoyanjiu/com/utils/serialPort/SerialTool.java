@@ -251,7 +251,10 @@ public class SerialTool {
     					try {
     						final SerialPort openPort = openPort("COM3", 9600);
     						//自定义定义串口监听器
-    						SerialPortEventListener serialPortEventListener = new SerialPortEventListener() {
+    						SerialListener serialListener = new SerialListener(openPort);
+    						serialListener.addListener(openPort, serialListener);
+    						
+    						/*SerialPortEventListener serialPortEventListener = new SerialPortEventListener() {
     							@Override
     							public void serialEvent(SerialPortEvent serialPortEvent) {
     								switch (serialPortEvent.getEventType()) {
@@ -312,10 +315,10 @@ public class SerialTool {
     										}
     									 }
     								 }
-    							};
+    							};*/
     								
     						//添加监听事件,并唤醒监听(将端口与监听器事件绑定)
-    						addListener(openPort, serialPortEventListener);
+    						//addListener(openPort, serialPortEventListener);
     						//关闭端口,读取数据不能关闭端口
     						//closePort(openPort);
     						//睡一会儿
