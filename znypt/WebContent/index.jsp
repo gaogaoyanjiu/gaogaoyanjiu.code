@@ -48,7 +48,8 @@
     <script type="text/javascript">
       $(function(){
     	    $("#btn1").click(function(){
-    	        $.post("http://localhost:8081/testComIO/COMServlet",{btn1:"AA"},function(data){
+
+    	        $.post("http://localhost:8081/znypt/comTxServlet",{btn1:"AA"},function(data){
     	           // window.location.href="ServletAjax";
     	           /*  $("#btn1").val("关闭");
     	            $("#btn2").val("关闭"); */
@@ -60,7 +61,7 @@
     	     });
     	    
     	    $("#btn2").click(function(){
-    	        $.post("http://localhost:8081/testComIO/COMServlet",{btn2:"02"},function(data){
+    	        $.post("http://localhost:8081/znypt/comTxServlet",{btn2:"02"},function(data){
     	            //window.location.href="ServletAjax";
     	        	 /* $("#btn1").val("开启");
      	             $("#btn2").val("开启"); */
@@ -139,6 +140,7 @@
     	    <br/>
     	    <br/>
     	    <br/>
+   <table>
     		&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/a.png"  id="img1" width="15px" height="15px">
     	    <input type="button" name="test"  id="btn1" value="开启"/>
     	    &nbsp;&nbsp;&nbsp;&nbsp;
@@ -161,8 +163,26 @@
 		       在此显示需要接收的内容
 		  </textarea>
     	    <input type="button" name="test"  id="btnf" value="接收数据"/>
-    	    
-    	    
+    	    <br>
+    	    	<tr>
+					<td align="right">接收数据：</td>
+					<td><textarea class="easyui-validatebox"
+							id="Dialog_scrRequire" name="scrRequire"
+							style="width: 422px; height: 100px; border: 1px solid #DDDDDD;"
+							validType="length[0,800]" invalidMessage="不能超过800个字"
+							missingMessage="必填项" required="true" readonly="readonly">在此显示需要接收的内容</textarea> <br />
+					<span style="color: red">输入内容不超过800字</span></td>
+				</tr>
+    	    	<tr>
+					<td align="right">发送数据：</td>
+					<td><textarea class="easyui-validatebox"
+							id="Dialog_scrRequire" name="scrRequire"
+							style="width: 422px; height: 100px; border: 1px solid #DDDDDD;"
+							validType="length[0,800]" invalidMessage="不能超过800个字"
+							missingMessage="必填项" required="true">在此输入需要发送的数据</textarea> <br />
+					<span style="color: red">输入内容不超过800字</span></td>
+				</tr>
+    	    </table>
     	    
     	</body>
     	</html>
