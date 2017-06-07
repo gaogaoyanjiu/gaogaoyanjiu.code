@@ -33,10 +33,14 @@ public class CameraUtils {
 	 * @since javacv1.3 
 	 */
 	public static void getLocalCamera() throws Exception, InterruptedException{
+		//可视化对象
 		OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);
 		grabber.start(); //开始获取摄像头数据
 		CanvasFrame canvas = new CanvasFrame("摄像头");//新建一个窗口  
-		canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//canvas.setDefaultCloseOperation(JFrame.MAXIMIZED_HORIZ);
+		//canvas.setDefaultCloseOperation(JFrame.MAXIMIZED_HORIZ);
+		
 		canvas.setAlwaysOnTop(true);
 		
 		while (true) {
@@ -141,13 +145,17 @@ public class CameraUtils {
 
 	    
 	public static void main(String[] args) throws Exception, InterruptedException, org.bytedeco.javacv.FrameRecorder.Exception {
-		//getLocalCamera();//调用本地摄像头窗口视频 
-		//recordCamera("output.mp4",25);//按帧录制本机摄像头视频
-		//recordCamera("rtmp://192.168.30.21/live/record1",25);
+		getLocalCamera();//调用本地摄像头窗口视频 
+		//生成本地视频文件
+		String localFile="output.mp4";
+		recordCamera(localFile,25);//按帧录制本机摄像头视频,录制完成放置到本地
+		//生成远程服务器视频文件
+		//String remoteFile="rtmp://192.168.30.21/live/record1";
+		//recordCamera(remoteFile,25);//按帧录制本机摄像头视频,录制完成放置到远程服务器
 		
-		 //String inputFile = "rtsp://admin:admin@192.168.2.236:37779/cam/realmonitor?channel=1&subtype=0";
-		 String inputFile = "rtsp://admin:admin@192.168.43.44:8080/cam/realmonitor?channel=1&subtype=0";
-		 String outputFile = "recorde.mp4";
-		 frameRecord(inputFile, outputFile, 1);
+		//本地和远程视频各自生成一份
+		// String inputFile = "rtsp://admin:admin@192.168.43.44:8080/cam/realmonitor?channel=1&subtype=0";
+		// String outputFile = "recorde.mp4";
+		// frameRecord(inputFile, outputFile, 1);
 	}
 }
