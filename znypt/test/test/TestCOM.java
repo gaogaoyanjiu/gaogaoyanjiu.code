@@ -4,9 +4,14 @@ import java.util.List;
 
 import org.junit.Test;
 
-import gaogaoyanjiu.com.utils.COM3Utils;
+import gaogaoyanjiu.com.utils.serialPort.SerialTool;
+import gaogaoyanjiu.com.utils.serialPort.serialException.NoSuchPort;
+import gaogaoyanjiu.com.utils.serialPort.serialException.NotASerialPort;
+import gaogaoyanjiu.com.utils.serialPort.serialException.PortInUse;
+import gaogaoyanjiu.com.utils.serialPort.serialException.SerialPortParameterFailure;
 import gnu.io.NoSuchPortException;
 import gnu.io.PortInUseException;
+import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
 
 /**
@@ -22,7 +27,7 @@ public class TestCOM {
 	
 	@Test
 	public  void TestgetCOM3List() {
-		List<String> com3List = COM3Utils.getCOM3List();
+		List<String> com3List = SerialTool.findPort();
 		System.out.println(com3List);
 	}
 	/**
@@ -33,19 +38,13 @@ public class TestCOM {
 	 */
 	@Test
 	public  void TestsetBaudRate() throws UnsupportedCommOperationException, PortInUseException, NoSuchPortException {
-		String baudRate = COM3Utils.setBaudRate(9600, "COM3");
+		SerialPort baudRate = null;
+		try {
+			baudRate = SerialTool.openPort("COM3", 9600);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println(baudRate);
 	}
-	/**
-	 * 测试获取COM串口波特率
-	 * @throws PortInUseException 
-	 * @throws NoSuchPortException 
-	 */
-	@Test
-	public  void TestgetBaudRate() throws NoSuchPortException, PortInUseException {
-		int baudRate = COM3Utils.getBaudRate("COM3");
-		int baudRate2 = COM3Utils.getBaudRate("COM4");
-		System.out.println("COM3"+" 的波特率是: "+baudRate);
-		System.out.println("COM4"+" 的波特率是: "+baudRate2);
-	}
+	
 }
