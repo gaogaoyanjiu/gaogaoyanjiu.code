@@ -29,5 +29,8 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/opencv-windows-x86.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/opencv.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.8.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json-lib-2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

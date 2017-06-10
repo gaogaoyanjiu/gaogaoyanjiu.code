@@ -34,8 +34,8 @@
 	}
 	.mwui-switch-btn span{
 		width:32px;
-		font-size:14px;
-		height:18px;
+		font-size:16px;
+		height:24px;
 		display:block; 
 		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#f6f6f6,endColorstr=#eeeeee,grandientType=1);
 		background:-webkit-gradient(linear, 0 0, 0 100%, from(#f6f6f6), to(#eeeeee));
@@ -54,8 +54,9 @@
 	
 	<script type="text/javascript">
 	$(function() { 
-		$('.mwui-switch-btn').each(function() {
-			$(this).bind("click", function() { 
+		//$('.mwui-switch-btn').each(function() {
+			//$(this).bind("click", function() { 
+			$("#light1").bind("click", function() { 
 				var btn = $(this).find("span");
 				var change = btn.attr("change");
 				btn.toggleClass('off'); 
@@ -64,17 +65,39 @@
 					$(this).find("input").val("0");
 					btn.attr("change", btn.html()); 
 					btn.html(change);
+					
+					alert($(this).find("input").val());
+					
 				} else { 
 					$(this).find("input").val("1");
 					btn.attr("change", btn.html()); 
 					btn.html(change);
-				}  
+					
+					//alert($(this).find("input").val());
+					var bt=$(this).find("input").val();
+					var json={"bt":bt};
+					
+					alert(json.bt);
+					alert("${pageContext.request.contextPath}");
+					
+					//提交数据
+					var url="${pageContext.request.contextPath}/comRxServlet";
+					$.post(url,json,function(data){
+						
+						var result = eval("("+data+")");
+						alert(result.success);
+					}); 
+					
+				}
+					
+				
 
 				return false;
 			});
-		});
+		//});
 
 		$("#submit").click(function() {
+			
 			 alert("提交成功！！！");
 			 
 			var form = $(this).parent()[0];
@@ -175,46 +198,92 @@
                 </div>
                 <div class="col-md-2">
                 
-                <!--  -->
-                <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                <!-- 测试按钮 -->
+                <br/> <br/> <br/> <br/>
+                <br/> <br/> <br/> <br/>
                 <form action="" method="post">
 	                <table>
 		                <tr>
 			                <td>
-								电灯1<button class="mwui-switch-btn"><span change="开" class="off">关</span><input type="hidden" name="show_icon" value="0" /></button> 
+								智能灯1<button class="mwui-switch-btn" id="light1" ><span change="开" class="off">关</span><input type="hidden" name="show_icon" value="0" /></button> 
 			                </td>
 			                 <td style="width:15px;display:inline-block;"></td>
 			                <td>
-								电灯2<button class="mwui-switch-btn"><span change="关">开</span><input type="hidden" name="open_topbar" value="1" /></button> 
+								智能灯2<button class="mwui-switch-btn" id="light2"><span change="关">开</span><input type="hidden" name="open_topbar" value="1" /></button> 
 			                </td>
 		                </tr>
-		                
-		                <tr style="height:15px;display:inline-block;"></tr>
-		                
-		                <tr>
-			                <td>
-								空调1<button class="mwui-switch-btn"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
-			                </td>
-			                
-			                <td style="width:15px;display:inline-block;"></td>
-			                
-			                <td>
-								空调2<button class="mwui-switch-btn"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
-			                </td>
-			                
-			                <tr>
-			                <td>
-								<input type="submit" id="submit" value="提交" />
-			                </td>
-			                </tr>
-		                </tr>
-		                
 	                </table>
-				</form>
-                </div>
-                <div class="col-md-1"></div>
-            </div>
-        </div>
+	               
+	         <table>
+    	 <!-- <input type="button" name="test"  id="btnf" value="接收数据"/> -->
+    	    <tr><td><br></td></tr>
+    	   	 <tr >
+                <td style="width: 35px;">
+	                <img src="img/a.png"  id="znd_1" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="znd_2" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="znd_3" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="znd_4" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="znd_5" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="znd_6" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="znd_7" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="znd_8" width="15px" height="15px"/> &nbsp;&nbsp;
+                </td>
+	          <tr/>
+	          
+	          <tr><td><br></td></tr>
+	          
+    	    	<!-- 发送数据 -->
+    	    		<tr style="color: red ;" >
+    	    		<td>
+	    	    		只能输入16进制HEX数据(即0~9,A~F)
+    	    		</td>
+    	    		</tr>
+    	    		<tr style="height: 10px;" >
+    	    		<td></td>
+    	    		</tr>
+    	    	<tr>
+					<td><textarea id="Dialog_scrRequire" name="scrRequire"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true">在此输入需要发送的数据</textarea> 
+					</td>
+					<td>
+						<span>
+							<input type="button" name="test"  id="btnf" value="发送数据"/> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+				
+				<tr><td><br/></td></tr>
+    	    
+    	    	<!-- 接收数据 -->
+    	    	<tr>
+					<td>
+					
+					<textarea id="Dialog_scrRequire" name="scrRequire"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true" readonly="readonly">在此显示需要接收的内容</textarea>
+					<td>
+						<input type="button" name="test"  id="btnf" value="接收数据"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+    	    </table>
+		</form>
+     </div>
+      <div class="col-md-1"></div>
+   </div>
+</div>
      
 </section>
 <!--电灯-->
@@ -234,6 +303,92 @@
                 </div>
                 <div class="col-md-2">
                 
+                <!-- 测试按钮 -->
+                <br/> <br/> <br/> <br/>
+                <br/> <br/> <br/> <br/>
+                
+                 <form action="" method="post">
+	                <table>
+		                <tr>
+			                <td>
+								空调1<button class="mwui-switch-btn" id="kt1"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
+			                </td>
+			                
+			                <td style="width:15px;display:inline-block;"></td>
+			                
+			                <td>
+								空调2<button class="mwui-switch-btn" id="kt2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
+			                </td>
+			          </tr>
+	               </table>
+	               
+	         <table>
+
+    	    <tr><td><br></td></tr>
+    	   	 
+    	   	 <tr >
+                <td style="width: 35px;">
+	                <img src="img/a.png"  id="kt_1" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="kt_2" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="kt_3" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="kt_4" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="kt_5" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="kt_6" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="kt_7" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="kt_8" width="15px" height="15px"/> &nbsp;&nbsp;
+                </td>
+	          <tr/>
+	          
+	          <tr><td><br></td></tr>
+	          
+    	    	<!-- 发送数据 -->
+    	    		<tr style="color: red ;" >
+    	    		<td>
+	    	    		只能输入16进制HEX数据(即0~9,A~F)
+    	    		</td>
+    	    		</tr>
+    	    		<tr style="height: 10px;" >
+    	    		<td></td>
+    	    		</tr>
+    	    	<tr>
+					<td><textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true">在此输入需要发送的数据</textarea> 
+					</td>
+					<td>
+						<span>
+							<input type="button" name="#"  id="#" value="发送数据"/> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+				
+				<tr><td><br/></td></tr>
+    	    
+    	    	<!-- 接收数据 -->
+    	    	<tr>
+					<td>
+					
+					<textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true" readonly="readonly">在此显示需要接收的内容</textarea>
+					<td>
+						<input type="button" name="#"  id="#" value="接收数据"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+    	    </table>
+		</form>
                 </div>
                 <div class="col-md-1"></div>
             </div>
@@ -256,7 +411,92 @@
                     <img src="img/ddd.jpg" class="img-responsive" alt="这是一张图片" width="62%" height="62%"/>
                 </div>
                 <div class="col-md-2">
+                 <!-- 测试按钮 -->
+                <br/> <br/> <br/> <br/>
+                <br/> <br/> <br/> <br/>
                 
+                 <form action="" method="post">
+	                <table>
+		                <tr>
+			                <td>
+								插座1<button class="mwui-switch-btn" id="cz1"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
+			                </td>
+			                
+			                <td style="width:15px;display:inline-block;"></td>
+			                
+			                <td>
+								插座2<button class="mwui-switch-btn" id="cz2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
+			                </td>
+			          </tr>
+	               </table>
+	               
+	         <table>
+
+    	    <tr><td><br></td></tr>
+    	   	 
+    	   	 <tr >
+                <td style="width: 35px;">
+	                <img src="img/a.png"  id="cz_1" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="cz_2" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="cz_3" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="cz_4" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="cz_5" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="cz_6" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="cz_7" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="cz_8" width="15px" height="15px"/> &nbsp;&nbsp;
+                </td>
+	          <tr/>
+	          
+	          <tr><td><br></td></tr>
+	          
+    	    	<!-- 发送数据 -->
+    	    		<tr style="color: red ;" >
+    	    		<td>
+	    	    		只能输入16进制HEX数据(即0~9,A~F)
+    	    		</td>
+    	    		</tr>
+    	    		<tr style="height: 10px;" >
+    	    		<td></td>
+    	    		</tr>
+    	    	<tr>
+					<td><textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true">在此输入需要发送的数据</textarea> 
+					</td>
+					<td>
+						<span>
+							<input type="button" name="#"  id="#" value="发送数据"/> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+				
+				<tr><td><br/></td></tr>
+    	    
+    	    	<!-- 接收数据 -->
+    	    	<tr>
+					<td>
+					
+					<textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true" readonly="readonly">在此显示需要接收的内容</textarea>
+					<td>
+						<input type="button" name="#"  id="#" value="接收数据"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+    	    </table>
+		</form>
                 </div>
                 <div class="col-md-1"></div>
             </div>
@@ -279,7 +519,92 @@
                     <img src="img/ddd.jpg" class="img-responsive" alt="这是一张图片" width="62%" height="62%"/>
                 </div>
                 <div class="col-md-2">
+                 <!-- 测试按钮 -->
+                <br/> <br/> <br/> <br/>
+                <br/> <br/> <br/> <br/>
                 
+                 <form action="" method="post">
+	                <table>
+		                <tr>
+			                <td>
+								摄像头1<button class="mwui-switch-btn" id="sxt1"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
+			                </td>
+			                
+			                <td style="width:15px;display:inline-block;"></td>
+			                
+			                <td>
+								摄像头2<button class="mwui-switch-btn" id="sxt2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
+			                </td>
+			          </tr>
+	               </table>
+	               
+	         <table>
+
+    	    <tr><td><br></td></tr>
+    	   	 
+    	   	 <tr >
+                <td style="width: 35px;">
+	                <img src="img/a.png"  id="sxt_1" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="sxt_2" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="sxt_3" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="sxt_4" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="sxt_5" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="sxt_6" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="sxt_7" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="sxt_8" width="15px" height="15px"/> &nbsp;&nbsp;
+                </td>
+	          <tr/>
+	          
+	          <tr><td><br></td></tr>
+	          
+    	    	<!-- 发送数据 -->
+    	    		<tr style="color: red ;" >
+    	    		<td>
+	    	    		只能输入16进制HEX数据(即0~9,A~F)
+    	    		</td>
+    	    		</tr>
+    	    		<tr style="height: 10px;" >
+    	    		<td></td>
+    	    		</tr>
+    	    	<tr>
+					<td><textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true">在此输入需要发送的数据</textarea> 
+					</td>
+					<td>
+						<span>
+							<input type="button" name="#"  id="#" value="发送数据"/> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+				
+				<tr><td><br/></td></tr>
+    	    
+    	    	<!-- 接收数据 -->
+    	    	<tr>
+					<td>
+					
+					<textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true" readonly="readonly">在此显示需要接收的内容</textarea>
+					<td>
+						<input type="button" name="#"  id="#" value="接收数据"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+    	    </table>
+		</form>
                 </div>
                 <div class="col-md-1"></div>
             </div>
@@ -302,7 +627,92 @@
                     <img src="img/ddd.jpg" class="img-responsive" alt="这是一张图片" width="62%" height="62%"/>
                 </div>
                 <div class="col-md-2">
+                 <!-- 测试按钮 -->
+                <br/> <br/> <br/> <br/>
+                <br/> <br/> <br/> <br/>
                 
+                 <form action="" method="post">
+	                <table>
+		                <tr>
+			                <td>
+								电冰箱1<button class="mwui-switch-btn" id="dbx1"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
+			                </td>
+			                
+			                <td style="width:15px;display:inline-block;"></td>
+			                
+			                <td>
+								电冰箱2<button class="mwui-switch-btn" id="dbx2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
+			                </td>
+			          </tr>
+	               </table>
+	               
+	         <table>
+
+    	    <tr><td><br></td></tr>
+    	   	 
+    	   	 <tr >
+                <td style="width: 35px;">
+	                <img src="img/a.png"  id="dbx_1" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dbx_2" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dbx_3" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dbx_4" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dbx_5" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dbx_6" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dbx_7" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dbx_8" width="15px" height="15px"/> &nbsp;&nbsp;
+                </td>
+	          <tr/>
+	          
+	          <tr><td><br></td></tr>
+	          
+    	    	<!-- 发送数据 -->
+    	    		<tr style="color: red ;" >
+    	    		<td>
+	    	    		只能输入16进制HEX数据(即0~9,A~F)
+    	    		</td>
+    	    		</tr>
+    	    		<tr style="height: 10px;" >
+    	    		<td></td>
+    	    		</tr>
+    	    	<tr>
+					<td><textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true">在此输入需要发送的数据</textarea> 
+					</td>
+					<td>
+						<span>
+							<input type="button" name="test"  id="btnf" value="发送数据"/> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+				
+				<tr><td><br/></td></tr>
+    	    
+    	    	<!-- 接收数据 -->
+    	    	<tr>
+					<td>
+					
+					<textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true" readonly="readonly">在此显示需要接收的内容</textarea>
+					<td>
+						<input type="button" name="#"  id="#" value="接收数据"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+    	    </table>
+		</form>
                 </div>
                 <div class="col-md-1"></div>
             </div>
@@ -325,7 +735,92 @@
                     <img src="img/ddd.jpg" class="img-responsive" alt="这是一张图片" width="62%" height="62%"/>
                 </div>
                 <div class="col-md-2">
+                 <!-- 测试按钮 -->
+                <br/> <br/> <br/> <br/>
+                <br/> <br/> <br/> <br/>
                 
+                 <form action="" method="post">
+	                <table>
+		                <tr>
+			                <td>
+								电饭锅1<button class="mwui-switch-btn" id="dfg1"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
+			                </td>
+			                
+			                <td style="width:15px;display:inline-block;"></td>
+			                
+			                <td>
+								电饭锅2<button class="mwui-switch-btn" id="dfg2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
+			                </td>
+			          </tr>
+	               </table>
+	               
+	         <table>
+
+    	    <tr><td><br></td></tr>
+    	   	 
+    	   	 <tr >
+                <td style="width: 35px;">
+	                <img src="img/a.png"  id="dfg_1" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dfg_2" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dfg_3" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dfg_4" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dfg_5" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dfg_6" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dfg_7" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="dfg_8" width="15px" height="15px"/> &nbsp;&nbsp;
+                </td>
+	          <tr/>
+	          
+	          <tr><td><br></td></tr>
+	          
+    	    	<!-- 发送数据 -->
+    	    		<tr style="color: red ;" >
+    	    		<td>
+	    	    		只能输入16进制HEX数据(即0~9,A~F)
+    	    		</td>
+    	    		</tr>
+    	    		<tr style="height: 10px;" >
+    	    		<td></td>
+    	    		</tr>
+    	    	<tr>
+					<td><textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true">在此输入需要发送的数据</textarea> 
+					</td>
+					<td>
+						<span>
+							<input type="button" name="#"  id="#" value="发送数据"/> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+				
+				<tr><td><br/></td></tr>
+    	    
+    	    	<!-- 接收数据 -->
+    	    	<tr>
+					<td>
+					
+					<textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true" readonly="readonly">在此显示需要接收的内容</textarea>
+					<td>
+						<input type="button" name="#"  id="#" value="接收数据"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+    	    </table>
+		</form>
                 </div>
                 <div class="col-md-1"></div>
             </div>
@@ -348,7 +843,92 @@
                     <img src="img/ddd.jpg" class="img-responsive" alt="这是一张图片" width="62%" height="62%"/>
                 </div>
                 <div class="col-md-2">
+                 <!-- 测试按钮 -->
+                <br/> <br/> <br/> <br/>
+                <br/> <br/> <br/> <br/>
                 
+                 <form action="" method="post">
+	                <table>
+		                <tr>
+			                <td>
+								电视机1<button class="mwui-switch-btn" id="TV1"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
+			                </td>
+			                
+			                <td style="width:15px;display:inline-block;"></td>
+			                
+			                <td>
+								电视机2<button class="mwui-switch-btn" id="TV2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
+			                </td>
+			          </tr>
+	               </table>
+	               
+	         <table>
+
+    	    <tr><td><br></td></tr>
+    	   	 
+    	   	 <tr >
+                <td style="width: 35px;">
+	                <img src="img/a.png"  id="TV_1" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="TV_2" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="TV_3" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="TV_4" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="TV_5" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="TV_6" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="TV_7" width="15px" height="15px"/> &nbsp;&nbsp;
+	                <img src="img/a.png"  id="TV_8" width="15px" height="15px"/> &nbsp;&nbsp;
+                </td>
+	          <tr/>
+	          
+	          <tr><td><br></td></tr>
+	          
+    	    	<!-- 发送数据 -->
+    	    		<tr style="color: red ;" >
+    	    		<td>
+	    	    		只能输入16进制HEX数据(即0~9,A~F)
+    	    		</td>
+    	    		</tr>
+    	    		<tr style="height: 10px;" >
+    	    		<td></td>
+    	    		</tr>
+    	    	<tr>
+					<td><textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true">在此输入需要发送的数据</textarea> 
+					</td>
+					<td>
+						<span>
+							<input type="button" name="#"  id="#" value="发送数据"/> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+				
+				<tr><td><br/></td></tr>
+    	    
+    	    	<!-- 接收数据 -->
+    	    	<tr>
+					<td>
+					
+					<textarea id="#" name="#"
+							style="width: 300px; height: 50px; border: 1px solid #DDDDDD;"
+							validType="length[0,30]" invalidMessage="不能超过30个字符"
+							missingMessage="必填项" required="true" readonly="readonly">在此显示需要接收的内容</textarea>
+					<td>
+						<input type="button" name="#"  id="#" value="接收数据"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="color: red" >输入内容不超过30字符</span>
+					</td>
+				</tr>
+    	    </table>
+		</form>
                 </div>
                 <div class="col-md-1"></div>
             </div>

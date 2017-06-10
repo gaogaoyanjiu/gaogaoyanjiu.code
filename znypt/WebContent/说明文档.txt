@@ -1,24 +1,24 @@
-ÏîÄ¿Ãû³Æ£ºÖÇÄÜÔÆÆ½Ì¨  znypt
+é¡¹ç›®åç§°ï¼šæ™ºèƒ½äº‘å¹³å°  znypt
 
-½éÉÜ£º´ËÏîÄ¿ÊÇÎªÁË·½±ã¹¤×÷ºÍÉú»î¶ø¿ª·¢,Ê¹µÃ¹¤×÷ºÍÉú»î¸ü¼ÓÖÇÄÜ»¯!
+ä»‹ç»ï¼šæ­¤é¡¹ç›®æ˜¯ä¸ºäº†æ–¹ä¾¿å·¥ä½œå’Œç”Ÿæ´»è€Œå¼€å‘,ä½¿å¾—å·¥ä½œå’Œç”Ÿæ´»æ›´åŠ æ™ºèƒ½åŒ–!
 
-¹¦ÄÜÖ÷Òª°üÀ¨£º
-	1¡¢COM´®¿ÚÍ¨ÐÅ
-	2¡¢USBÍ¨ÓÃ´®¿ÚÍ¨ÐÅ
-	3¡¢WiFiÍ¨ÐÅ
-	4¡¢À¶ÑÀÍ¨ÐÅ
-	5¡¢GSMÊÖ»úÍ¨ÐÅ
-	6¡¢NETÍøÂçÍ¨ÐÅ
-	7¡¢ÊÓÆµ½âÎö
-¿ò¼Ü½éÉÜ
-	web²ã:SpringMVC
-	service²ã:Spring
-	dao²ã: MyBatis
+åŠŸèƒ½ä¸»è¦åŒ…æ‹¬ï¼š
+	1ã€COMä¸²å£é€šä¿¡
+	2ã€USBé€šç”¨ä¸²å£é€šä¿¡
+	3ã€WiFié€šä¿¡
+	4ã€è“ç‰™é€šä¿¡
+	5ã€GSMæ‰‹æœºé€šä¿¡
+	6ã€NETç½‘ç»œé€šä¿¡
+	7ã€è§†é¢‘è§£æž
+æ¡†æž¶ä»‹ç»
+	webå±‚:SpringMVC
+	serviceå±‚:Spring
+	daoå±‚: MyBatis
 	
-Ò³Ãæ¿ò¼Ü
-	Ò³Ãæ±êÇ©:HTML5
-	Ò³Ãæ¿ò¼Ü:Bootstrap±âÆ½»¯Éè¼Æ
+é¡µé¢æ¡†æž¶
+	é¡µé¢æ ‡ç­¾:HTML5
+	é¡µé¢æ¡†æž¶:Bootstrapæ‰å¹³åŒ–è®¾è®¡
 	
 TODO
-ÆäËû¿ò¼ÜºÍ¼¼ÊõºóÐøÌí¼Ó......			
+å…¶ä»–æ¡†æž¶å’ŒæŠ€æœ¯åŽç»­æ·»åŠ ......			
 	
