@@ -52,6 +52,7 @@ public class ComRxServlet extends HttpServlet {
 					SerialTool.closePort(serialPort);
 				}
 				
+				//获取已经连接的串口
 				session.setAttribute("COM", "COM3"); 
 				//session.removeAttribute("key"); 
 				//session.invalidate(); //删除所有session中保存的键
