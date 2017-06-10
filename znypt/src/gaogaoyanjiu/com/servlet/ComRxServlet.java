@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import gaogaoyanjiu.com.utils.serialPort.SerialTool;
 import gaogaoyanjiu.com.utils.serialPort.serialException.StringToHex;
@@ -37,14 +38,30 @@ public class ComRxServlet extends HttpServlet {
 				//设置编码
 				resp.setCharacterEncoding("UTF-8");
 				resp.setContentType("text/html;charset=UTF-8");
-				
-				byte[] data = new byte[]{(byte)0x22,(byte)0xbb,(byte)0xcc,(byte)0xdd,(byte)0xee,(byte)0x33,(byte)0xFF,(byte)0x55};  
+				String bt= req.getParameter("bt");
+				System.out.println(bt);
+				byte[] data = new byte[]{(byte)0xaa,(byte)0xbb,(byte)0xcc,(byte)0xdd,(byte)0xee,(byte)0x33,(byte)0xFF,(byte)0x55};  
 				//byte[] data = null;
-
+				
+				//检查session是否存在已经使用的COM端口
+				HttpSession session = req.getSession(); 
+				String COM = (String) session.getAttribute("COM"); 
+				//如果不为空,先关闭端口
+				if (COM!=null&&"".equals(COM)) {
+					
+					SerialTool.closePort(serialPort);
+				}
+				
+				session.setAttribute("COM", "COM3"); 
+				//session.removeAttribute("key"); 
+				//session.invalidate(); //删除所有session中保存的键
+				
 				SerialTool.testReadData();
 				//data.toString().toUpperCase();
-				resp.getWriter().write("{'success':"+Integer.toHexString(data[0] & 0xFF).toUpperCase()+"}");
-							
+				String upperCase = Integer.toHexString(data[0] & 0xFF).toUpperCase();
+				//返回json
+				resp.getWriter().write("{'success':'返回的数据为  : "+upperCase+"'}");
+				
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
