@@ -3,7 +3,7 @@ package gaogaoyanjiu.com.service.impl;
 import gaogaoyanjiu.com.service.USBService;
 
 /**
- * USB通用串口模块
+ * USB閫氱敤涓插彛妯″潡
  * @author Administrator
  *
  */

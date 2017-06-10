@@ -5,16 +5,16 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * ¸ºÔğ½«´«ÈëµÄExceptionÖĞµÄ´íÎóĞÅÏ¢ÌáÈ¡³öÀ´²¢×ª»»³É×Ö·û´®£»
+ * è´Ÿè´£å°†ä¼ å…¥çš„Exceptionä¸­çš„é”™è¯¯ä¿¡æ¯æå–å‡ºæ¥å¹¶è½¬æ¢æˆå­—ç¬¦ä¸²ï¼›
  * @author zhong
  *
  */
 public class ExceptionWriter {
 
 	/**
-	 * ½«ExceptionÖĞµÄ´íÎóĞÅÏ¢·â×°µ½×Ö·û´®ÖĞ²¢·µ»Ø¸Ã×Ö·û´®
-	 * @param e °üº¬´íÎóµÄException
-	 * @return ´íÎóĞÅÏ¢×Ö·û´®
+	 * å°†Exceptionä¸­çš„é”™è¯¯ä¿¡æ¯å°è£…åˆ°å­—ç¬¦ä¸²ä¸­å¹¶è¿”å›è¯¥å­—ç¬¦ä¸²
+	 * @param e åŒ…å«é”™è¯¯çš„Exception
+	 * @return é”™è¯¯ä¿¡æ¯å­—ç¬¦ä¸²
 	 */
 	public static String getErrorInfoFromException(Exception e) { 
 	    	
@@ -28,7 +28,7 @@ public class ExceptionWriter {
 	            return "\r\n" + sw.toString() + "\r\n";  
 	            
 	        } catch (Exception e2) {  
-	            return "³ö´íÀ²£¡Î´»ñÈ¡µ½´íÎóĞÅÏ¢£¬Çë¼ì²éºóÖØÊÔ!";  
+	            return "å‡ºé”™å•¦ï¼æœªè·å–åˆ°é”™è¯¯ä¿¡æ¯ï¼Œè¯·æ£€æŸ¥åé‡è¯•!";  
 	        } finally {
 	        	try {
 	            	if (pw != null) {

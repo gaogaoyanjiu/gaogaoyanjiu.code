@@ -1,7 +1,7 @@
 package gaogaoyanjiu.com.utils.serialPort.serialException;
 
 /**
- * ¶Ë¿ÚÒÑ±»Õ¼ÓÃÒì³£Àà
+ * ç«¯å£å·²è¢«å ç”¨å¼‚å¸¸ç±»
  */
 public class PortInUse extends Exception {
 	private static final long serialVersionUID = 1L;
@@ -10,7 +10,7 @@ public class PortInUse extends Exception {
 
 	@Override
 	public String toString() {
-		return "¶Ë¿ÚÒÑ±»Õ¼ÓÃ£¡´ò¿ª´®¿Ú²Ù×÷Ê§°Ü£¡";
+		return "ç«¯å£å·²è¢«å ç”¨ï¼æ‰“å¼€ä¸²å£æ“ä½œå¤±è´¥ï¼";
 	}
 	
 }

@@ -21,8 +21,8 @@ import gaogaoyanjiu.com.utils.serialPort.serialException.ExceptionWriter;
 
 
 /**
- * Ö÷³ÌĞò
- * @author zhong
+ * ä¸»ç¨‹åº
+ * @author zhangliang
  *
  */
 public class Client extends Frame{
@@ -33,78 +33,78 @@ public class Client extends Frame{
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * ³ÌĞò½çÃæ¿í¶È
+	 * ç¨‹åºç•Œé¢å®½åº¦
 	 */
 	public static final int WIDTH = 800;
 	
 	/**
-	 * ³ÌĞò½çÃæ¸ß¶È
+	 * ç¨‹åºç•Œé¢é«˜åº¦
 	 */
 	public static final int HEIGHT = 620;
 	
 	/**
-	 * ³ÌĞò½çÃæ³öÏÖÎ»ÖÃ£¨ºá×ø±ê£©
+	 * ç¨‹åºç•Œé¢å‡ºç°ä½ç½®ï¼ˆæ¨ªåæ ‡ï¼‰
 	 */
 	public static final int LOC_X = 200;
 	
 	/**
-	 * ³ÌĞò½çÃæ³öÏÖÎ»ÖÃ£¨×İ×ø±ê£©
+	 * ç¨‹åºç•Œé¢å‡ºç°ä½ç½®ï¼ˆçºµåæ ‡ï¼‰
 	 */
 	public static final int LOC_Y = 70;
 
 	Color color = Color.WHITE; 
-	Image offScreen = null;	//ÓÃÓÚË«»º³å
+	Image offScreen = null;	//ç”¨äºåŒç¼“å†²
 	
-	//ÉèÖÃwindowµÄicon£¨ÕâÀïÎÒ×Ô¶¨ÒåÁËÒ»ÏÂWindows´°¿ÚµÄiconÍ¼±ê£¬ÒòÎªÊµÔÚ¾õµÃÄÄ¸öĞ¡¿§·ÈÍ¼±ê²»ºÃ¿´ = =£©
+	//è®¾ç½®windowçš„iconï¼ˆè¿™é‡Œæˆ‘è‡ªå®šä¹‰äº†ä¸€ä¸‹Windowsçª—å£çš„iconå›¾æ ‡ï¼Œå› ä¸ºå®åœ¨è§‰å¾—å“ªä¸ªå°å’–å•¡å›¾æ ‡ä¸å¥½çœ‹ = =ï¼‰
 	Toolkit toolKit = getToolkit();
 	Image icon = toolKit.getImage(Client.class.getResource("computer.png"));
 	
-	//³ÖÓĞÆäËûÀà
-	DataView dataview = new DataView(this);	//Ö÷½çÃæÀà£¨ÏÔÊ¾¼à¿ØÊı¾İÖ÷Ãæ°å£©
+	//æŒæœ‰å…¶ä»–ç±»
+	DataView dataview = new DataView(this);	//ä¸»ç•Œé¢ç±»ï¼ˆæ˜¾ç¤ºç›‘æ§æ•°æ®ä¸»é¢æ¿ï¼‰
 
 	/**
-	 * ÏÔÊ¾Ö÷½çÃæ
+	 * æ˜¾ç¤ºä¸»ç•Œé¢
 	 */
 	public void launchFrame() {
-		this.setBounds(LOC_X, LOC_Y, WIDTH, HEIGHT);	//Éè¶¨³ÌĞòÔÚ×ÀÃæ³öÏÖµÄÎ»ÖÃ
-		this.setTitle("CDIO¹¤³ÌÏîÄ¿");	//ÉèÖÃ³ÌĞò±êÌâ
+		this.setBounds(LOC_X, LOC_Y, WIDTH, HEIGHT);	//è®¾å®šç¨‹åºåœ¨æ¡Œé¢å‡ºç°çš„ä½ç½®
+		this.setTitle("CDIOå·¥ç¨‹é¡¹ç›®");	//è®¾ç½®ç¨‹åºæ ‡é¢˜
 		this.setIconImage(icon);
-		this.setBackground(Color.white);	//ÉèÖÃ±³¾°É«
+		this.setBackground(Color.white);	//è®¾ç½®èƒŒæ™¯è‰²
 		
 		this.addWindowListener(new WindowAdapter() {
-			//Ìí¼Ó¶Ô´°¿Ú×´Ì¬µÄ¼àÌı
+			//æ·»åŠ å¯¹çª—å£çŠ¶æ€çš„ç›‘å¬
 			public void windowClosing(WindowEvent arg0) {
-				//µ±´°¿Ú¹Ø±ÕÊ±
-				System.exit(0);	//ÍË³ö³ÌĞò
+				//å½“çª—å£å…³é—­æ—¶
+				System.exit(0);	//é€€å‡ºç¨‹åº
 			}
 			
 		});
 
-		this.addKeyListener(new KeyMonitor());	//Ìí¼Ó¼üÅÌ¼àÌıÆ÷
-		this.setResizable(false);	//´°¿Ú´óĞ¡²»¿É¸ü¸Ä
-		this.setVisible(true);	//ÏÔÊ¾´°¿Ú
+		this.addKeyListener(new KeyMonitor());	//æ·»åŠ é”®ç›˜ç›‘å¬å™¨
+		this.setResizable(false);	//çª—å£å¤§å°ä¸å¯æ›´æ”¹
+		this.setVisible(true);	//æ˜¾ç¤ºçª—å£
 			
-		new Thread(new RepaintThread()).start();	//¿ªÆôÖØ»­Ïß³Ì
+		new Thread(new RepaintThread()).start();	//å¼€å¯é‡ç”»çº¿ç¨‹
 	}
 	
 	/**
-	 * »­³ö³ÌĞò½çÃæ¸÷×é¼şÔªËØ
+	 * ç”»å‡ºç¨‹åºç•Œé¢å„ç»„ä»¶å…ƒç´ 
 	 */
 	public void paint(Graphics g) {
 		Color c = g.getColor();
 		
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 40));
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 40));
 		g.setColor(Color.black);
-		g.drawString("»¶Ó­Ê¹ÓÃÉÏÎ»»úÊµÊ±¼à¿ØÏµÍ³", 45, 190);
+		g.drawString("æ¬¢è¿ä½¿ç”¨ä¸Šä½æœºå®æ—¶ç›‘æ§ç³»ç»Ÿ", 45, 190);
 		
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.ITALIC, 26));
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.ITALIC, 26));
 		g.setColor(Color.BLACK);
-		g.drawString("Version£º1.0   ¿ª·¢Õß£ºÕÅÁº", 280, 260);
+		g.drawString("Versionï¼š1.0   å¼€å‘è€…ï¼šå¼ æ¢", 280, 260);
 		
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 30));
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 30));
 		g.setColor(color);
-		g.drawString("¡ª¡ª¡ª¡ªµã»÷Enter¼ü½øÈëÖ÷½çÃæ¡ª¡ª¡ª¡ª", 100, 480);
-		//Ê¹ÎÄ×Ö "¡ª¡ª¡ª¡ªµã»÷Enter¼ü½øÈëÖ÷½çÃæ¡ª¡ª¡ª¡ª" ºÚ°×ÉÁË¸
+		g.drawString("â€”â€”â€”â€”ç‚¹å‡»Enteré”®è¿›å…¥ä¸»ç•Œé¢â€”â€”â€”â€”", 100, 480);
+		//ä½¿æ–‡å­— "â€”â€”â€”â€”ç‚¹å‡»Enteré”®è¿›å…¥ä¸»ç•Œé¢â€”â€”â€”â€”" é»‘ç™½é—ªçƒ
 		if (color == Color.WHITE){
 			color = Color.black;
 		}
@@ -112,34 +112,33 @@ public class Client extends Frame{
 			color = Color.white;
 		}
 		
-		
 	}
 	
 	/**
-	 * Ë«»º³å·½Ê½ÖØ»­½çÃæ¸÷ÔªËØ×é¼ş
+	 * åŒç¼“å†²æ–¹å¼é‡ç”»ç•Œé¢å„å…ƒç´ ç»„ä»¶
 	 */
 	public void update(Graphics g) {
 		if (offScreen == null)	offScreen = this.createImage(WIDTH, HEIGHT);
 		Graphics gOffScreen = offScreen.getGraphics();
 		Color c = gOffScreen.getColor();
 		gOffScreen.setColor(Color.white);
-		gOffScreen.fillRect(0, 0, WIDTH, HEIGHT);	//ÖØ»­±³¾°»­²¼
-		this.paint(gOffScreen);	//ÖØ»­½çÃæÔªËØ
+		gOffScreen.fillRect(0, 0, WIDTH, HEIGHT);	//é‡ç”»èƒŒæ™¯ç”»å¸ƒ
+		this.paint(gOffScreen);	//é‡ç”»ç•Œé¢å…ƒç´ 
 		gOffScreen.setColor(c);
-		g.drawImage(offScreen, 0, 0, null);	//½«ĞÂ»­ºÃµÄ»­²¼¡°Ìù¡±ÔÚÔ­»­²¼ÉÏ
+		g.drawImage(offScreen, 0, 0, null);	//å°†æ–°ç”»å¥½çš„ç”»å¸ƒâ€œè´´â€åœ¨åŸç”»å¸ƒä¸Š
 	}
 	
 	/*
-	 * ÄÚ²¿ÀàĞÎÊ½ÊµÏÖ¶Ô¼üÅÌÊÂ¼şµÄ¼àÌı
+	 * å†…éƒ¨ç±»å½¢å¼å®ç°å¯¹é”®ç›˜äº‹ä»¶çš„ç›‘å¬
 	 */
 	private class KeyMonitor extends KeyAdapter {
 
 		public void keyReleased(KeyEvent e) {
 			int keyCode = e.getKeyCode();
-			if (keyCode == KeyEvent.VK_ENTER) {	//µ±¼àÌıµ½ÓÃ»§ÇÃ»÷¼üÅÌenter¼üºóÖ´ĞĞÏÂÃæµÄ²Ù×÷
-				setVisible(false);	//ÒşÈ¥»¶Ó­½çÃæ
-				dataview.setVisible(true);	//ÏÔÊ¾¼à²â½çÃæ
-				dataview.dataFrame();	//³õÊ¼»¯¼à²â½çÃæ
+			if (keyCode == KeyEvent.VK_ENTER) {	//å½“ç›‘å¬åˆ°ç”¨æˆ·æ•²å‡»é”®ç›˜enteré”®åæ‰§è¡Œä¸‹é¢çš„æ“ä½œ
+				setVisible(false);	//éšå»æ¬¢è¿ç•Œé¢
+				dataview.setVisible(true);	//æ˜¾ç¤ºç›‘æµ‹ç•Œé¢
+				dataview.dataFrame();	//åˆå§‹åŒ–ç›‘æµ‹ç•Œé¢
 			}
 		}
 		
@@ -147,7 +146,7 @@ public class Client extends Frame{
 	
 	
 	/*
-	 * ÖØ»­Ïß³Ì£¨Ã¿¸ô250ºÁÃëÖØ»­Ò»´Î£©
+	 * é‡ç”»çº¿ç¨‹ï¼ˆæ¯éš”250æ¯«ç§’é‡ç”»ä¸€æ¬¡ï¼‰
 	 */
 	private class RepaintThread implements Runnable {
 		public void run() {
@@ -156,9 +155,9 @@ public class Client extends Frame{
 				try {
 					Thread.sleep(250);
 				} catch (InterruptedException e) {
-					//ÖØ»­Ïß³Ì³ö´íÅ×³öÒì³£Ê±´´½¨Ò»¸öDialog²¢ÏÔÊ¾Òì³£ÏêÏ¸ĞÅÏ¢
+					//é‡ç”»çº¿ç¨‹å‡ºé”™æŠ›å‡ºå¼‚å¸¸æ—¶åˆ›å»ºä¸€ä¸ªDialogå¹¶æ˜¾ç¤ºå¼‚å¸¸è¯¦ç»†ä¿¡æ¯
 					String err = ExceptionWriter.getErrorInfoFromException(e);
-					JOptionPane.showMessageDialog(null, err, "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, err, "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 					System.exit(0);
 				}
 			}
@@ -170,8 +169,8 @@ public class Client extends Frame{
 	
 	
 	/**
-	 * Ö÷·½·¨
-	 * @param args	//
+	 * ä¸»æ–¹æ³•
+	 * @param args
 	 */
 	public static void main(String[] args) {
 		new Client().launchFrame();	

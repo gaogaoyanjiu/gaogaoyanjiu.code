@@ -15,8 +15,8 @@ import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 
 /**
- * ´®¿ÚÊı¾İ½»»¥¿ØÖÆÆ÷
- * ¶¨Ê±¼àÌı´®¿Ú¶ÁÈ¡Êı¾İ
+ * ä¸²å£æ•°æ®äº¤äº’æ§åˆ¶å™¨
+ * å®šæ—¶ç›‘å¬ä¸²å£è¯»å–æ•°æ®
  * @author zhangliang
  *
  */
@@ -27,14 +27,14 @@ public class ComRxServlet extends HttpServlet {
     static OutputStream out;  
     static SerialPort serialPort;  
     static int count = 0;  
-    StringToHex sHex;//ÔÚ¼òÌåÖĞÎÄWindows²Ù×÷ÏµÍ³ÏÂ£¬Ä¬ÈÏ±àÂë·½Ê½Îª"GBK"£¬ÔÚAndroidÆ½Ì¨ÉÏ£¬Ä¬ÈÏ±àÂë·½Ê½Îª"UTF-8"¡£ ĞèÒª×ª³É16½øÖÆ
+    StringToHex sHex;//åœ¨ç®€ä½“ä¸­æ–‡Windowsæ“ä½œç³»ç»Ÿä¸‹ï¼Œé»˜è®¤ç¼–ç æ–¹å¼ä¸º"GBK"ï¼Œåœ¨Androidå¹³å°ä¸Šï¼Œé»˜è®¤ç¼–ç æ–¹å¼ä¸º"UTF-8"ã€‚ éœ€è¦è½¬æˆ16è¿›åˆ¶
     
     public ComRxServlet() {
         super(); 
     }
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-				//ÉèÖÃ±àÂë
+				//è®¾ç½®ç¼–ç 
 				resp.setCharacterEncoding("UTF-8");
 				resp.setContentType("text/html;charset=UTF-8");
 				

@@ -1,7 +1,7 @@
 package gaogaoyanjiu.com.utils.serialPort.serialException;
 
 /**
- * Íù´®¿Ú·¢ËÍÊı¾İÊ§°Ü
+ * å¾€ä¸²å£å‘é€æ•°æ®å¤±è´¥
  */
 public class SendDataToSerialPortFailure extends Exception {
 	private static final long serialVersionUID = 1L;
@@ -10,7 +10,7 @@ public class SendDataToSerialPortFailure extends Exception {
 
 	@Override
 	public String toString() {
-		return "Íù´®¿Ú·¢ËÍÊı¾İÊ§°Ü£¡";
+		return "å¾€ä¸²å£å‘é€æ•°æ®å¤±è´¥ï¼";
 	}
 	
 }

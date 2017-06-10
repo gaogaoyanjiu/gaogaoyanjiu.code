@@ -1,10 +1,11 @@
 package test;
 
+
 /**
- * ²âÊÔÀ¶ÑÀ
+ * æµ‹è¯•USBé€šç”¨ä¸²å£
  * @author Administrator
  *
  */
-public class TestBluetooth {
+public class TestUSB {
 
 }

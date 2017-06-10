@@ -1,7 +1,7 @@
 package gaogaoyanjiu.com.web;
 
 /**
- * 手机通信模块
+ * 鎵嬫満閫氫俊妯″潡
  * @author Administrator
  *
  */

@@ -1,7 +1,7 @@
 package gaogaoyanjiu.com.utils.serialPort.serialException;
 
 /**
- * ´®¿Ú¼àÌıÀàÊıÁ¿¹ı¶àÒì³£Àà
+ * ä¸²å£ç›‘å¬ç±»æ•°é‡è¿‡å¤šå¼‚å¸¸ç±»
  */
 public class TooManyListeners extends Exception {
 	private static final long serialVersionUID = 1L;
@@ -10,7 +10,7 @@ public class TooManyListeners extends Exception {
 
 	@Override
 	public String toString() {
-		return "´®¿Ú¼àÌıÀàÊıÁ¿¹ı¶à£¡Ìí¼Ó²Ù×÷Ê§°Ü£¡";
+		return "ä¸²å£ç›‘å¬ç±»æ•°é‡è¿‡å¤šï¼æ·»åŠ æ“ä½œå¤±è´¥ï¼";
 	}
 	
 }

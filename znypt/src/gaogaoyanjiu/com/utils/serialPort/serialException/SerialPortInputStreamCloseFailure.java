@@ -1,7 +1,7 @@
 package gaogaoyanjiu.com.utils.serialPort.serialException;
 
 /**
- * ¹Ø±Õ´®¿Ú¶ÔÏóÊäÈëÁ÷
+ * å…³é—­ä¸²å£å¯¹è±¡è¾“å…¥æµ
  */
 public class SerialPortInputStreamCloseFailure extends Exception {
 	private static final long serialVersionUID = 1L;
@@ -10,7 +10,7 @@ public class SerialPortInputStreamCloseFailure extends Exception {
 
 	@Override
 	public String toString() {
-		return "¹Ø±Õ´®¿Ú¶ÔÏóÊäÈëÁ÷£¨InputStream£©Ê±³ö´í£¡";
+		return "å…³é—­ä¸²å£å¯¹è±¡è¾“å…¥æµï¼ˆInputStreamï¼‰æ—¶å‡ºé”™ï¼";
 	}
 	
 	

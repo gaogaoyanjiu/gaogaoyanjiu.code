@@ -1,7 +1,7 @@
 package gaogaoyanjiu.com.vo;
 
 /**
- * À¶ÑÀÄ£¿é
+ * è“ç‰™æ¨¡å—
  * @author Administrator
  *
  */

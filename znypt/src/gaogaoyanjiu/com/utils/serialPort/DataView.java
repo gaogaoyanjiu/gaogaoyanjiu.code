@@ -24,7 +24,7 @@ import gnu.io.SerialPortEventListener;
 import gaogaoyanjiu.com.utils.serialPort.serialException.*;
 
 /**
- * ¼à²âÊı¾İÏÔÊ¾Àà
+ * ç›‘æµ‹æ•°æ®æ˜¾ç¤ºç±»
  * @author Zhong
  *
  */
@@ -37,45 +37,46 @@ public class DataView extends Frame {
 
 	Client client = null;
 
-	private List<String> commList = null;	//±£´æ¿ÉÓÃ¶Ë¿ÚºÅ
-	private SerialPort serialPort = null;	//±£´æ´®¿Ú¶ÔÏó
+	private List<String> commList = null;	//ä¿å­˜å¯ç”¨ç«¯å£å·
+	private SerialPort serialPort = null;	//ä¿å­˜ä¸²å£å¯¹è±¡
 	
-	private Font font = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 25);
+	private Font font = new Font("å¾®è½¯é›…é»‘", Font.BOLD, 25);
 	
-	private Label tem = new Label("ÔİÎŞÊı¾İ", Label.CENTER);	//ÎÂ¶È
-	private Label hum = new Label("ÔİÎŞÊı¾İ", Label.CENTER);	//Êª¶È
-	private Label pa = new Label("ÔİÎŞÊı¾İ", Label.CENTER);	//Ñ¹Ç¿
-	private Label rain = new Label("ÔİÎŞÊı¾İ", Label.CENTER);	//ÓêÁ¿
-	private Label win_sp = new Label("ÔİÎŞÊı¾İ", Label.CENTER);	//·çËÙ
-	private Label win_dir = new Label("ÔİÎŞÊı¾İ", Label.CENTER);	//·çÏò
+	private Label tem = new Label("æš‚æ— æ•°æ®", Label.CENTER);	//æ¸©åº¦
+	private Label hum = new Label("æš‚æ— æ•°æ®", Label.CENTER);	//æ¹¿åº¦
+	private Label pa = new Label("æš‚æ— æ•°æ®", Label.CENTER);	//å‹å¼º
+	private Label rain = new Label("æš‚æ— æ•°æ®", Label.CENTER);	//é›¨é‡
+	private Label win_sp = new Label("æš‚æ— æ•°æ®", Label.CENTER);	//é£é€Ÿ
+	private Label win_dir = new Label("æš‚æ— æ•°æ®", Label.CENTER);	//é£å‘
 	
-	private Choice commChoice = new Choice();	//´®¿ÚÑ¡Ôñ£¨ÏÂÀ­¿ò£©
-	private Choice bpsChoice = new Choice();	//²¨ÌØÂÊÑ¡Ôñ
+	private Choice commChoice = new Choice();	//ä¸²å£é€‰æ‹©ï¼ˆä¸‹æ‹‰æ¡†ï¼‰
+	private Choice bpsChoice = new Choice();	//æ³¢ç‰¹ç‡é€‰æ‹©
 	
-	private Button openSerialButton = new Button("´ò¿ª´®¿Ú");
+	//æ‰“å¼€ä¸²å£çš„æŒ‰é’®
+	private Button openSerialButton = new Button("open serial");
 	
-	Image offScreen = null;	//ÖØ»­Ê±µÄ»­²¼
+	Image offScreen = null;	//é‡ç”»æ—¶çš„ç”»å¸ƒ
 	
-	//ÉèÖÃwindowµÄicon
+	//è®¾ç½®windowçš„icon
 	Toolkit toolKit = getToolkit();
 	Image icon = toolKit.getImage(DataView.class.getResource("computer.png"));
 
 	/**
-	 * ÀàµÄ¹¹Ôì·½·¨
+	 * ç±»çš„æ„é€ æ–¹æ³•
 	 * @param client
 	 */
 	public DataView(Client client) {
 		this.client = client;
-		commList = SerialTool.findPort();	//³ÌĞò³õÊ¼»¯Ê±¾ÍÉ¨ÃèÒ»´ÎÓĞĞ§´®¿Ú
+		commList = SerialTool.findPort();	//ç¨‹åºåˆå§‹åŒ–æ—¶å°±æ‰«æä¸€æ¬¡æœ‰æ•ˆä¸²å£
 	}
 	
 	/**
-	 * Ö÷²Ëµ¥´°¿ÚÏÔÊ¾£»
-	 * Ìí¼ÓLabel¡¢°´Å¥¡¢ÏÂÀ­Ìõ¼°Ïà¹ØÊÂ¼ş¼àÌı£»
+	 * ä¸»èœå•çª—å£æ˜¾ç¤ºï¼›
+	 * æ·»åŠ Labelã€æŒ‰é’®ã€ä¸‹æ‹‰æ¡åŠç›¸å…³äº‹ä»¶ç›‘å¬ï¼›
 	 */
 	public void dataFrame() {
 		this.setBounds(client.LOC_X, client.LOC_Y, client.WIDTH, client.HEIGHT);
-		this.setTitle("CDIO¹¤³ÌÏîÄ¿");
+		this.setTitle("CDIOå·¥ç¨‹é¡¹ç›®");
 		this.setIconImage(icon);
 		this.setBackground(Color.white);
 		this.setLayout(null);
@@ -84,7 +85,7 @@ public class DataView extends Frame {
 			
 			public void windowClosing(WindowEvent arg0) {
 				if (serialPort != null) {
-					//³ÌĞòÍË³öÊ±¹Ø±Õ´®¿ÚÊÍ·Å×ÊÔ´
+					//ç¨‹åºé€€å‡ºæ—¶å…³é—­ä¸²å£é‡Šæ”¾èµ„æº
 					SerialTool.closePort(serialPort);
 				}
 				System.exit(0);
@@ -128,11 +129,11 @@ public class DataView extends Frame {
 		win_dir.setForeground(Color.white);
 		add(win_dir);
 		
-		//Ìí¼Ó´®¿ÚÑ¡ÔñÑ¡Ïî
+		//æ·»åŠ ä¸²å£é€‰æ‹©é€‰é¡¹
 		commChoice.setBounds(160, 397, 200, 200);
-		//¼ì²éÊÇ·ñÓĞ¿ÉÓÃ´®¿Ú£¬ÓĞÔò¼ÓÈëÑ¡ÏîÖĞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰å¯ç”¨ä¸²å£ï¼Œæœ‰åˆ™åŠ å…¥é€‰é¡¹ä¸­
 		if (commList == null || commList.size()<1) {
-			JOptionPane.showMessageDialog(null, "Ã»ÓĞËÑË÷µ½ÓĞĞ§´®¿Ú£¡", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "æ²¡æœ‰æœç´¢åˆ°æœ‰æ•ˆä¸²å£ï¼", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else {
 			for (String s : commList) {
@@ -141,7 +142,7 @@ public class DataView extends Frame {
 		}
 		add(commChoice);
 		
-		//Ìí¼Ó²¨ÌØÂÊÑ¡Ïî
+		//æ·»åŠ æ³¢ç‰¹ç‡é€‰é¡¹
 		bpsChoice.setBounds(526, 396, 200, 200);
 		bpsChoice.add("1200");
 		bpsChoice.add("2400");
@@ -152,46 +153,46 @@ public class DataView extends Frame {
 		bpsChoice.add("115200");
 		add(bpsChoice);
 		
-		//Ìí¼Ó´ò¿ª´®¿Ú°´Å¥
+		//æ·»åŠ æ‰“å¼€ä¸²å£æŒ‰é’®
 		openSerialButton.setBounds(250, 490, 300, 50);
 		openSerialButton.setBackground(Color.lightGray);
-		openSerialButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
+		openSerialButton.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 20));
 		openSerialButton.setForeground(Color.darkGray);
 		add(openSerialButton);
-		//Ìí¼Ó´ò¿ª´®¿Ú°´Å¥µÄÊÂ¼ş¼àÌı
+		//æ·»åŠ æ‰“å¼€ä¸²å£æŒ‰é’®çš„äº‹ä»¶ç›‘å¬
 		openSerialButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				
-				//»ñÈ¡´®¿ÚÃû³Æ
+				//è·å–ä¸²å£åç§°
 				String commName = commChoice.getSelectedItem();			
-				//»ñÈ¡²¨ÌØÂÊ
+				//è·å–æ³¢ç‰¹ç‡
 				String bpsStr = bpsChoice.getSelectedItem();
 				
-				//¼ì²é´®¿ÚÃû³ÆÊÇ·ñ»ñÈ¡ÕıÈ·
+				//æ£€æŸ¥ä¸²å£åç§°æ˜¯å¦è·å–æ­£ç¡®
 				if (commName == null || commName.equals("")) {
-					JOptionPane.showMessageDialog(null, "Ã»ÓĞËÑË÷µ½ÓĞĞ§´®¿Ú£¡", "´íÎó", JOptionPane.INFORMATION_MESSAGE);			
+					JOptionPane.showMessageDialog(null, "æ²¡æœ‰æœç´¢åˆ°æœ‰æ•ˆä¸²å£ï¼", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);			
 				}
 				else {
-					//¼ì²é²¨ÌØÂÊÊÇ·ñ»ñÈ¡ÕıÈ·
+					//æ£€æŸ¥æ³¢ç‰¹ç‡æ˜¯å¦è·å–æ­£ç¡®
 					if (bpsStr == null || bpsStr.equals("")) {
-						JOptionPane.showMessageDialog(null, "²¨ÌØÂÊ»ñÈ¡´íÎó£¡", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "æ³¢ç‰¹ç‡è·å–é”™è¯¯ï¼", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 					}
 					else {
-						//´®¿ÚÃû¡¢²¨ÌØÂÊ¾ù»ñÈ¡ÕıÈ·Ê±
+						//ä¸²å£åã€æ³¢ç‰¹ç‡å‡è·å–æ­£ç¡®æ—¶
 						int bps = Integer.parseInt(bpsStr);
 						try {
 							
-							//»ñÈ¡Ö¸¶¨¶Ë¿ÚÃû¼°²¨ÌØÂÊµÄ´®¿Ú¶ÔÏó
+							//è·å–æŒ‡å®šç«¯å£ååŠæ³¢ç‰¹ç‡çš„ä¸²å£å¯¹è±¡
 							serialPort = SerialTool.openPort(commName, bps);
-							//ÔÚ¸Ã´®¿Ú¶ÔÏóÉÏÌí¼Ó¼àÌıÆ÷
+							//åœ¨è¯¥ä¸²å£å¯¹è±¡ä¸Šæ·»åŠ ç›‘å¬å™¨
 							SerialTool.addListener(serialPort, new SerialListener());
-							//¼àÌı³É¹¦½øĞĞÌáÊ¾
-							JOptionPane.showMessageDialog(null, "¼àÌı³É¹¦£¬ÉÔºó½«ÏÔÊ¾¼à²âÊı¾İ£¡", "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+							//ç›‘å¬æˆåŠŸè¿›è¡Œæç¤º
+							JOptionPane.showMessageDialog(null, "ç›‘å¬æˆåŠŸï¼Œç¨åå°†æ˜¾ç¤ºç›‘æµ‹æ•°æ®ï¼", "æç¤º", JOptionPane.INFORMATION_MESSAGE);
 							
 						} catch (SerialPortParameterFailure | NotASerialPort | NoSuchPort | PortInUse | TooManyListeners e1) {
-							//·¢Éú´íÎóÊ±Ê¹ÓÃÒ»¸öDialogÌáÊ¾¾ßÌåµÄ´íÎóĞÅÏ¢
-							JOptionPane.showMessageDialog(null, e1, "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+							//å‘ç”Ÿé”™è¯¯æ—¶ä½¿ç”¨ä¸€ä¸ªDialogæç¤ºå…·ä½“çš„é”™è¯¯ä¿¡æ¯
+							JOptionPane.showMessageDialog(null, e1, "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 				}
@@ -202,105 +203,105 @@ public class DataView extends Frame {
 		
 		this.setResizable(false);
 		
-		new Thread(new RepaintThread()).start();	//Æô¶¯ÖØ»­Ïß³Ì
+		new Thread(new RepaintThread()).start();	//å¯åŠ¨é‡ç”»çº¿ç¨‹
 		
 	}
 	
 	/**
-	 * »­³öÖ÷½çÃæ×é¼şÔªËØ
+	 * ç”»å‡ºä¸»ç•Œé¢ç»„ä»¶å…ƒç´ 
 	 */
 	public void paint(Graphics g) {
 		Color c = g.getColor();
 		
 		g.setColor(Color.black);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 25));
-		g.drawString(" ÎÂ¶È£º ", 45, 130);
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 25));
+		g.drawString(" æ¸©åº¦ï¼š ", 45, 130);
 
 		g.setColor(Color.black);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 25));
-		g.drawString(" Êª¶È£º ", 425, 130);
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 25));
+		g.drawString(" æ¹¿åº¦ï¼š ", 425, 130);
 		
 		g.setColor(Color.black);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 25));
-		g.drawString(" Ñ¹Ç¿£º ", 45, 220);
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 25));
+		g.drawString(" å‹å¼ºï¼š ", 45, 220);
 		
 		g.setColor(Color.black);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 25));
-		g.drawString(" ÓêÁ¿£º ", 425, 220);
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 25));
+		g.drawString(" é›¨é‡ï¼š ", 425, 220);
 		
 		g.setColor(Color.black);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 25));
-		g.drawString(" ·çËÙ£º ", 45, 310);
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 25));
+		g.drawString(" é£é€Ÿï¼š ", 45, 310);
 		
 		g.setColor(Color.black);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 25));
-		g.drawString(" ·çÏò£º ", 425, 310);
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 25));
+		g.drawString(" é£å‘ï¼š ", 425, 310);
 		
 		g.setColor(Color.gray);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
-		g.drawString(" ´®¿ÚÑ¡Ôñ£º ", 45, 410);
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 20));
+		g.drawString(" ä¸²å£é€‰æ‹©ï¼š ", 45, 410);
 		
 		g.setColor(Color.gray);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
-		g.drawString(" ²¨ÌØÂÊ£º ", 425, 410);
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 20));
+		g.drawString(" æ³¢ç‰¹ç‡ï¼š ", 425, 410);
 		
 	}
 	
 	/**
-	 * Ë«»º³å·½Ê½ÖØ»­½çÃæ¸÷ÔªËØ×é¼ş
+	 * åŒç¼“å†²æ–¹å¼é‡ç”»ç•Œé¢å„å…ƒç´ ç»„ä»¶
 	 */
 	public void update(Graphics g) {
 		if (offScreen == null)	offScreen = this.createImage(Client.WIDTH, Client.HEIGHT);
 		Graphics gOffScreen = offScreen.getGraphics();
 		Color c = gOffScreen.getColor();
 		gOffScreen.setColor(Color.white);
-		gOffScreen.fillRect(0, 0, Client.WIDTH, Client.HEIGHT);	//ÖØ»­±³¾°»­²¼
-		this.paint(gOffScreen);	//ÖØ»­½çÃæÔªËØ
+		gOffScreen.fillRect(0, 0, Client.WIDTH, Client.HEIGHT);	//é‡ç”»èƒŒæ™¯ç”»å¸ƒ
+		this.paint(gOffScreen);	//é‡ç”»ç•Œé¢å…ƒç´ 
 		gOffScreen.setColor(c);
-		g.drawImage(offScreen, 0, 0, null);	//½«ĞÂ»­ºÃµÄ»­²¼¡°Ìù¡±ÔÚÔ­»­²¼ÉÏ
+		g.drawImage(offScreen, 0, 0, null);	//å°†æ–°ç”»å¥½çš„ç”»å¸ƒâ€œè´´â€åœ¨åŸç”»å¸ƒä¸Š
 	}
 	
 	/*
-	 * ÖØ»­Ïß³Ì£¨Ã¿¸ô30ºÁÃëÖØ»­Ò»´Î£©
+	 * é‡ç”»çº¿ç¨‹ï¼ˆæ¯éš”30æ¯«ç§’é‡ç”»ä¸€æ¬¡ï¼‰
 	 */
 	private class RepaintThread implements Runnable {
 		public void run() {
 			while(true) {
-				//µ÷ÓÃÖØ»­·½·¨
+				//è°ƒç”¨é‡ç”»æ–¹æ³•
 				repaint();
 				
-				//É¨Ãè¿ÉÓÃ´®¿Ú
+				//æ‰«æå¯ç”¨ä¸²å£
 				commList = SerialTool.findPort();
 				if (commList != null && commList.size()>0) {
 					
-					//Ìí¼ÓĞÂÉ¨Ãèµ½µÄ¿ÉÓÃ´®¿Ú
+					//æ·»åŠ æ–°æ‰«æåˆ°çš„å¯ç”¨ä¸²å£
 					for (String s : commList) {
 						
-						//¸Ã´®¿ÚÃûÊÇ·ñÒÑ´æÔÚ£¬³õÊ¼Ä¬ÈÏÎª²»´æÔÚ£¨ÔÚcommListÀï´æÔÚµ«ÔÚcommChoiceÀï²»´æÔÚ£¬ÔòĞÂÌí¼Ó£©
+						//è¯¥ä¸²å£åæ˜¯å¦å·²å­˜åœ¨ï¼Œåˆå§‹é»˜è®¤ä¸ºä¸å­˜åœ¨ï¼ˆåœ¨commListé‡Œå­˜åœ¨ä½†åœ¨commChoiceé‡Œä¸å­˜åœ¨ï¼Œåˆ™æ–°æ·»åŠ ï¼‰
 						boolean commExist = false;	
 						
 						for (int i=0; i<commChoice.getItemCount(); i++) {
 							if (s.equals(commChoice.getItem(i))) {
-								//µ±Ç°É¨Ãèµ½µÄ´®¿ÚÃûÒÑ¾­ÔÚ³õÊ¼É¨ÃèÊ±´æÔÚ
+								//å½“å‰æ‰«æåˆ°çš„ä¸²å£åå·²ç»åœ¨åˆå§‹æ‰«ææ—¶å­˜åœ¨
 								commExist = true;
 								break;
 							}					
 						}
 						
 						if (commExist) {
-							//µ±Ç°É¨Ãèµ½µÄ´®¿ÚÃûÒÑ¾­ÔÚ³õÊ¼É¨ÃèÊ±´æÔÚ£¬Ö±½Ó½øÈëÏÂÒ»´ÎÑ­»·
+							//å½“å‰æ‰«æåˆ°çš„ä¸²å£åå·²ç»åœ¨åˆå§‹æ‰«ææ—¶å­˜åœ¨ï¼Œç›´æ¥è¿›å…¥ä¸‹ä¸€æ¬¡å¾ªç¯
 							continue;
 						}
 						else {
-							//Èô²»´æÔÚÔòÌí¼ÓĞÂ´®¿ÚÃûÖÁ¿ÉÓÃ´®¿ÚÏÂÀ­ÁĞ±í
+							//è‹¥ä¸å­˜åœ¨åˆ™æ·»åŠ æ–°ä¸²å£åè‡³å¯ç”¨ä¸²å£ä¸‹æ‹‰åˆ—è¡¨
 							commChoice.add(s);
 						}
 					}
 					
-					//ÒÆ³ıÒÑ¾­²»¿ÉÓÃµÄ´®¿Ú
+					//ç§»é™¤å·²ç»ä¸å¯ç”¨çš„ä¸²å£
 					for (int i=0; i<commChoice.getItemCount(); i++) {
 						
-						//¸Ã´®¿ÚÊÇ·ñÒÑÊ§Ğ§£¬³õÊ¼Ä¬ÈÏÎªÒÑ¾­Ê§Ğ§£¨ÔÚcommChoiceÀï´æÔÚµ«ÔÚcommListÀï²»´æÔÚ£¬ÔòÒÑ¾­Ê§Ğ§£©
+						//è¯¥ä¸²å£æ˜¯å¦å·²å¤±æ•ˆï¼Œåˆå§‹é»˜è®¤ä¸ºå·²ç»å¤±æ•ˆï¼ˆåœ¨commChoiceé‡Œå­˜åœ¨ä½†åœ¨commListé‡Œä¸å­˜åœ¨ï¼Œåˆ™å·²ç»å¤±æ•ˆï¼‰
 						boolean commNotExist = true;	
 						
 						for (String s : commList) {
@@ -321,7 +322,7 @@ public class DataView extends Frame {
 					
 				}
 				else {
-					//Èç¹ûÉ¨Ãèµ½µÄcommListÎª¿Õ£¬ÔòÒÆ³ıËùÓĞÒÑÓĞ´®¿Ú
+					//å¦‚æœæ‰«æåˆ°çš„commListä¸ºç©ºï¼Œåˆ™ç§»é™¤æ‰€æœ‰å·²æœ‰ä¸²å£
 					commChoice.removeAll();
 				}
 
@@ -329,7 +330,7 @@ public class DataView extends Frame {
 					Thread.sleep(30);
 				} catch (InterruptedException e) {
 					String err = ExceptionWriter.getErrorInfoFromException(e);
-					JOptionPane.showMessageDialog(null, err, "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, err, "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 					System.exit(0);
 				}
 			}
@@ -338,85 +339,85 @@ public class DataView extends Frame {
 	}
 	
 	/**
-	 * ÒÔÄÚ²¿ÀàĞÎÊ½´´½¨Ò»¸ö´®¿Ú¼àÌıÀà
+	 * ä»¥å†…éƒ¨ç±»å½¢å¼åˆ›å»ºä¸€ä¸ªä¸²å£ç›‘å¬ç±»
 	 * @author zhong
 	 *
 	 */
 	private class SerialListener implements SerialPortEventListener {
 		
 		/**
-		 * ´¦Àí¼à¿Øµ½µÄ´®¿ÚÊÂ¼ş
+		 * å¤„ç†ç›‘æ§åˆ°çš„ä¸²å£äº‹ä»¶
 		 */
 	    public void serialEvent(SerialPortEvent serialPortEvent) {
 	    	
 	        switch (serialPortEvent.getEventType()) {
 
-	            case SerialPortEvent.BI: // 10 Í¨Ñ¶ÖĞ¶Ï
-	            	JOptionPane.showMessageDialog(null, "Óë´®¿ÚÉè±¸Í¨Ñ¶ÖĞ¶Ï", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+	            case SerialPortEvent.BI: // 10 é€šè®¯ä¸­æ–­
+	            	JOptionPane.showMessageDialog(null, "ä¸ä¸²å£è®¾å¤‡é€šè®¯ä¸­æ–­", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 	            	break;
 
-	            case SerialPortEvent.OE: // 7 ÒçÎ»£¨Òç³ö£©´íÎó
+	            case SerialPortEvent.OE: // 7 æº¢ä½ï¼ˆæº¢å‡ºï¼‰é”™è¯¯
 
-	            case SerialPortEvent.FE: // 9 Ö¡´íÎó
+	            case SerialPortEvent.FE: // 9 å¸§é”™è¯¯
 
-	            case SerialPortEvent.PE: // 8 ÆæÅ¼Ğ£Ñé´íÎó
+	            case SerialPortEvent.PE: // 8 å¥‡å¶æ ¡éªŒé”™è¯¯
 
-	            case SerialPortEvent.CD: // 6 ÔØ²¨¼ì²â
+	            case SerialPortEvent.CD: // 6 è½½æ³¢æ£€æµ‹
 
-	            case SerialPortEvent.CTS: // 3 Çå³ı´ı·¢ËÍÊı¾İ
+	            case SerialPortEvent.CTS: // 3 æ¸…é™¤å¾…å‘é€æ•°æ®
 
-	            case SerialPortEvent.DSR: // 4 ´ı·¢ËÍÊı¾İ×¼±¸ºÃÁË
+	            case SerialPortEvent.DSR: // 4 å¾…å‘é€æ•°æ®å‡†å¤‡å¥½äº†
 
-	            case SerialPortEvent.RI: // 5 ÕñÁåÖ¸Ê¾
+	            case SerialPortEvent.RI: // 5 æŒ¯é“ƒæŒ‡ç¤º
 
-	            case SerialPortEvent.OUTPUT_BUFFER_EMPTY: // 2 Êä³ö»º³åÇøÒÑÇå¿Õ
+	            case SerialPortEvent.OUTPUT_BUFFER_EMPTY: // 2 è¾“å‡ºç¼“å†²åŒºå·²æ¸…ç©º
 	            	break;
 	            
-	            case SerialPortEvent.DATA_AVAILABLE: // 1 ´®¿Ú´æÔÚ¿ÉÓÃÊı¾İ
+	            case SerialPortEvent.DATA_AVAILABLE: // 1 ä¸²å£å­˜åœ¨å¯ç”¨æ•°æ®
 	            	
 	            	//System.out.println("found data");
 					byte[] data = null;
 					
 					try {
 						if (serialPort == null) {
-							JOptionPane.showMessageDialog(null, "´®¿Ú¶ÔÏóÎª¿Õ£¡¼àÌıÊ§°Ü£¡", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "ä¸²å£å¯¹è±¡ä¸ºç©ºï¼ç›‘å¬å¤±è´¥ï¼", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else {
-							data = SerialTool.readFromPort(serialPort);	//¶ÁÈ¡Êı¾İ£¬´æÈë×Ö½ÚÊı×é
+							data = SerialTool.readFromPort(serialPort);	//è¯»å–æ•°æ®ï¼Œå­˜å…¥å­—èŠ‚æ•°ç»„
 							//System.out.println(new String(data));
 							
-							//×Ô¶¨Òå½âÎö¹ı³Ì
-							if (data == null || data.length < 1) {	//¼ì²éÊı¾İÊÇ·ñ¶ÁÈ¡ÕıÈ·	
-								JOptionPane.showMessageDialog(null, "¶ÁÈ¡Êı¾İ¹ı³ÌÖĞÎ´»ñÈ¡µ½ÓĞĞ§Êı¾İ£¡Çë¼ì²éÉè±¸»ò³ÌĞò£¡", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+							//è‡ªå®šä¹‰è§£æè¿‡ç¨‹
+							if (data == null || data.length < 1) {	//æ£€æŸ¥æ•°æ®æ˜¯å¦è¯»å–æ­£ç¡®	
+								JOptionPane.showMessageDialog(null, "è¯»å–æ•°æ®è¿‡ç¨‹ä¸­æœªè·å–åˆ°æœ‰æ•ˆæ•°æ®ï¼è¯·æ£€æŸ¥è®¾å¤‡æˆ–ç¨‹åºï¼", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 								System.exit(0);
 							}
 							else {
-								String dataOriginal = new String(data);	//½«×Ö½ÚÊı×éÊı¾İ×ª»»Î»Îª±£´æÁËÔ­Ê¼Êı¾İµÄ×Ö·û´®
-								String dataValid = "";	//ÓĞĞ§Êı¾İ£¨ÓÃÀ´±£´æÔ­Ê¼Êı¾İ×Ö·û´®È¥³ı×î¿ªÍ·*ºÅÒÔºóµÄ×Ö·û´®£©
-								String[] elements = null;	//ÓÃÀ´±£´æ°´¿Õ¸ñ²ğ·ÖÔ­Ê¼×Ö·û´®ºóµÃµ½µÄ×Ö·û´®Êı×é	
-								//½âÎöÊı¾İ
-								if (dataOriginal.charAt(0) == '*') {	//µ±Êı¾İµÄµÚÒ»¸ö×Ö·ûÊÇ*ºÅÊ±±íÊ¾Êı¾İ½ÓÊÕÍê³É£¬¿ªÊ¼½âÎö							
+								String dataOriginal = new String(data);	//å°†å­—èŠ‚æ•°ç»„æ•°æ®è½¬æ¢ä½ä¸ºä¿å­˜äº†åŸå§‹æ•°æ®çš„å­—ç¬¦ä¸²
+								String dataValid = "";	//æœ‰æ•ˆæ•°æ®ï¼ˆç”¨æ¥ä¿å­˜åŸå§‹æ•°æ®å­—ç¬¦ä¸²å»é™¤æœ€å¼€å¤´*å·ä»¥åçš„å­—ç¬¦ä¸²ï¼‰
+								String[] elements = null;	//ç”¨æ¥ä¿å­˜æŒ‰ç©ºæ ¼æ‹†åˆ†åŸå§‹å­—ç¬¦ä¸²åå¾—åˆ°çš„å­—ç¬¦ä¸²æ•°ç»„	
+								//è§£ææ•°æ®
+								if (dataOriginal.charAt(0) == '*') {	//å½“æ•°æ®çš„ç¬¬ä¸€ä¸ªå­—ç¬¦æ˜¯*å·æ—¶è¡¨ç¤ºæ•°æ®æ¥æ”¶å®Œæˆï¼Œå¼€å§‹è§£æ							
 									dataValid = dataOriginal.substring(1);
 									elements = dataValid.split(" ");
-									if (elements == null || elements.length < 1) {	//¼ì²éÊı¾İÊÇ·ñ½âÎöÕıÈ·
-										JOptionPane.showMessageDialog(null, "Êı¾İ½âÎö¹ı³Ì³ö´í£¬Çë¼ì²éÉè±¸»ò³ÌĞò£¡", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+									if (elements == null || elements.length < 1) {	//æ£€æŸ¥æ•°æ®æ˜¯å¦è§£ææ­£ç¡®
+										JOptionPane.showMessageDialog(null, "æ•°æ®è§£æè¿‡ç¨‹å‡ºé”™ï¼Œè¯·æ£€æŸ¥è®¾å¤‡æˆ–ç¨‹åºï¼", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 										System.exit(0);
 									}
 									else {
 										try {
-											//¸üĞÂ½çÃæLabelÖµ
+											//æ›´æ–°ç•Œé¢Labelå€¼
 											/*for (int i=0; i<elements.length; i++) {
 												System.out.println(elements[i]);
 											}*/
 											//System.out.println("win_dir: " + elements[5]);
-											tem.setText(elements[0] + " ¡æ");
+											tem.setText(elements[0] + " â„ƒ");
 											hum.setText(elements[1] + " %");
 											pa.setText(elements[2] + " hPa");
 											rain.setText(elements[3] + " mm");
 											win_sp.setText(elements[4] + " m/s");
-											win_dir.setText(elements[5] + " ¡ã");
+											win_dir.setText(elements[5] + " Â°");
 										} catch (ArrayIndexOutOfBoundsException e) {
-											JOptionPane.showMessageDialog(null, "Êı¾İ½âÎö¹ı³Ì³ö´í£¬¸üĞÂ½çÃæÊı¾İÊ§°Ü£¡Çë¼ì²éÉè±¸»ò³ÌĞò£¡", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+											JOptionPane.showMessageDialog(null, "æ•°æ®è§£æè¿‡ç¨‹å‡ºé”™ï¼Œæ›´æ–°ç•Œé¢æ•°æ®å¤±è´¥ï¼è¯·æ£€æŸ¥è®¾å¤‡æˆ–ç¨‹åºï¼", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 											System.exit(0);
 										}
 									}	
@@ -426,8 +427,8 @@ public class DataView extends Frame {
 						}						
 						
 					} catch (ReadDataFromSerialPortFailure | SerialPortInputStreamCloseFailure e) {
-						JOptionPane.showMessageDialog(null, e, "´íÎó", JOptionPane.INFORMATION_MESSAGE);
-						System.exit(0);	//·¢Éú¶ÁÈ¡´íÎóÊ±ÏÔÊ¾´íÎóĞÅÏ¢ºóÍË³öÏµÍ³
+						JOptionPane.showMessageDialog(null, e, "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
+						System.exit(0);	//å‘ç”Ÿè¯»å–é”™è¯¯æ—¶æ˜¾ç¤ºé”™è¯¯ä¿¡æ¯åé€€å‡ºç³»ç»Ÿ
 					}	
 		            
 					break;

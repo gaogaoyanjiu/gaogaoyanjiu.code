@@ -12,7 +12,7 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 
 	/**
-	 * ´´½¨Ò»¸ö´®¿Ú¼àÌıÀà
+	 * åˆ›å»ºä¸€ä¸ªä¸²å£ç›‘å¬ç±»
 	 * @author zhang
 	 *
 	 */
@@ -20,7 +20,7 @@ import gnu.io.SerialPortEventListener;
 		
 		private SerialPort serialPort;
 		private InputStream inputStream;
-	    StringToHex sHex;//ÔÚ¼òÌåÖĞÎÄWindows²Ù×÷ÏµÍ³ÏÂ£¬Ä¬ÈÏ±àÂë·½Ê½Îª"GBK"£¬ÔÚAndroidÆ½Ì¨ÉÏ£¬Ä¬ÈÏ±àÂë·½Ê½Îª"UTF-8"¡£ ĞèÒª×ª³É16½øÖÆ
+	    StringToHex sHex;//åœ¨ç®€ä½“ä¸­æ–‡Windowsæ“ä½œç³»ç»Ÿä¸‹ï¼Œé»˜è®¤ç¼–ç æ–¹å¼ä¸º"GBK"ï¼Œåœ¨Androidå¹³å°ä¸Šï¼Œé»˜è®¤ç¼–ç æ–¹å¼ä¸º"UTF-8"ã€‚ éœ€è¦è½¬æˆ16è¿›åˆ¶
 		public SerialListener(SerialPort serialPort) {
 			super();
 			this.serialPort = serialPort;
@@ -31,46 +31,46 @@ import gnu.io.SerialPortEventListener;
 		}
 
 		/**
-		 * ´¦Àí¼à¿Øµ½µÄ´®¿ÚÊÂ¼ş
+		 * å¤„ç†ç›‘æ§åˆ°çš„ä¸²å£äº‹ä»¶
 		 * @param serialPort 
 		 */
 	    public void serialEvent(SerialPortEvent serialPortEvent) {
 	    	
 	        switch (serialPortEvent.getEventType()) {
 
-	            case SerialPortEvent.BI: // 10 Í¨Ñ¶ÖĞ¶Ï
-	            	JOptionPane.showMessageDialog(null, "Óë´®¿ÚÉè±¸Í¨Ñ¶ÖĞ¶Ï", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+	            case SerialPortEvent.BI: // 10 é€šè®¯ä¸­æ–­
+	            	JOptionPane.showMessageDialog(null, "ä¸ä¸²å£è®¾å¤‡é€šè®¯ä¸­æ–­", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 	            	break;
 
-	            case SerialPortEvent.OE: // 7 ÒçÎ»£¨Òç³ö£©´íÎó
+	            case SerialPortEvent.OE: // 7 æº¢ä½ï¼ˆæº¢å‡ºï¼‰é”™è¯¯
 
-	            case SerialPortEvent.FE: // 9 Ö¡´íÎó
+	            case SerialPortEvent.FE: // 9 å¸§é”™è¯¯
 
-	            case SerialPortEvent.PE: // 8 ÆæÅ¼Ğ£Ñé´íÎó
+	            case SerialPortEvent.PE: // 8 å¥‡å¶æ ¡éªŒé”™è¯¯
 
-	            case SerialPortEvent.CD: // 6 ÔØ²¨¼ì²â
+	            case SerialPortEvent.CD: // 6 è½½æ³¢æ£€æµ‹
 
-	            case SerialPortEvent.CTS: // 3 Çå³ı´ı·¢ËÍÊı¾İ
+	            case SerialPortEvent.CTS: // 3 æ¸…é™¤å¾…å‘é€æ•°æ®
 
-	            case SerialPortEvent.DSR: // 4 ´ı·¢ËÍÊı¾İ×¼±¸ºÃÁË
+	            case SerialPortEvent.DSR: // 4 å¾…å‘é€æ•°æ®å‡†å¤‡å¥½äº†
 
-	            case SerialPortEvent.RI: // 5 ÕñÁåÖ¸Ê¾
+	            case SerialPortEvent.RI: // 5 æŒ¯é“ƒæŒ‡ç¤º
 
-	            case SerialPortEvent.OUTPUT_BUFFER_EMPTY: // 2 Êä³ö»º³åÇøÒÑÇå¿Õ
+	            case SerialPortEvent.OUTPUT_BUFFER_EMPTY: // 2 è¾“å‡ºç¼“å†²åŒºå·²æ¸…ç©º
 	            	break;
 	            
-	            case SerialPortEvent.DATA_AVAILABLE: // 1 ´®¿Ú´æÔÚ¿ÉÓÃÊı¾İ
+	            case SerialPortEvent.DATA_AVAILABLE: // 1 ä¸²å£å­˜åœ¨å¯ç”¨æ•°æ®
 	           
-	            	System.out.println("======================================·¢ÏÖ data Êı¾İ==========================================");
+	            	System.out.println("======================================å‘ç° data æ•°æ®==========================================");
 	            
 	            	byte[] data = null;
 				
 					if (serialPort == null) {
-						JOptionPane.showMessageDialog(null, "´®¿Ú¶ÔÏóÎª¿Õ£¡¼àÌıÊ§°Ü£¡", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "ä¸²å£å¯¹è±¡ä¸ºç©ºï¼ç›‘å¬å¤±è´¥ï¼", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 					}else {
 							try {
-								data = SerialTool.readFromPort(serialPort);//¶ÁÈ¡Êı¾İ£¬´æÈë×Ö½ÚÊı×é
-								List<String> printHexString = sHex.printHexString(data);//½«¶Á³öµÄ×Ö·ûÊı×éÊı¾İ£¬Ö±½Ó×ª»»³ÉÊ®Áù½øÖÆ¡£  
+								data = SerialTool.readFromPort(serialPort);//è¯»å–æ•°æ®ï¼Œå­˜å…¥å­—èŠ‚æ•°ç»„
+								List<String> printHexString = sHex.printHexString(data);//å°†è¯»å‡ºçš„å­—ç¬¦æ•°ç»„æ•°æ®ï¼Œç›´æ¥è½¬æ¢æˆåå…­è¿›åˆ¶ã€‚  
 								//System.out.println(printHexString);
 								
 								String str2 = "";
@@ -78,17 +78,17 @@ import gnu.io.SerialPortEventListener;
 									//System.out.println(str.length());
 									str2+=str;
 								}
-								System.out.println("Êı¾İ£º"+str2);
+								System.out.println("æ•°æ®ï¼š"+str2);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}	
-							//×Ô¶¨Òå½âÎö¹ı³Ì
-							if (data == null || data.length < 1) {	//¼ì²éÊı¾İÊÇ·ñ¶ÁÈ¡ÕıÈ·	
-								JOptionPane.showMessageDialog(null, "¶ÁÈ¡Êı¾İ¹ı³ÌÖĞÎ´»ñÈ¡µ½ÓĞĞ§Êı¾İ£¡Çë¼ì²éÉè±¸»ò³ÌĞò£¡", "´íÎó", JOptionPane.INFORMATION_MESSAGE);
+							//è‡ªå®šä¹‰è§£æè¿‡ç¨‹
+							if (data == null || data.length < 1) {	//æ£€æŸ¥æ•°æ®æ˜¯å¦è¯»å–æ­£ç¡®	
+								JOptionPane.showMessageDialog(null, "è¯»å–æ•°æ®è¿‡ç¨‹ä¸­æœªè·å–åˆ°æœ‰æ•ˆæ•°æ®ï¼è¯·æ£€æŸ¥è®¾å¤‡æˆ–ç¨‹åºï¼", "é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 								System.exit(0);
 							}
 							else {
-								//System.out.println("ÓĞÊı¾İ");
+								//System.out.println("æœ‰æ•°æ®");
 							}
 					}
 	        }
@@ -96,17 +96,17 @@ import gnu.io.SerialPortEventListener;
 	    
 	    
     /**
-     * Ìí¼Ó¼àÌıÆ÷
-     * @param port     ´®¿Ú¶ÔÏó
-     * @param listener ´®¿Ú¼àÌıÆ÷
-     * @throws TooManyListeners ¼àÌıÀà¶ÔÏó¹ı¶à
+     * æ·»åŠ ç›‘å¬å™¨
+     * @param port     ä¸²å£å¯¹è±¡
+     * @param listener ä¸²å£ç›‘å¬å™¨
+     * @throws TooManyListeners ç›‘å¬ç±»å¯¹è±¡è¿‡å¤š
      */
 	public void addListener(SerialPort port, SerialPortEventListener listener) throws TooManyListenersException{
-	    	 //¸ø´®¿ÚÌí¼Ó¼àÌıÆ÷
+	    	 //ç»™ä¸²å£æ·»åŠ ç›‘å¬å™¨
 	        port.addEventListener(listener);
-	        //ÉèÖÃµ±ÓĞÊı¾İµ½´ïÊ±»½ĞÑ¼àÌı½ÓÊÕÏß³Ì
+	        //è®¾ç½®å½“æœ‰æ•°æ®åˆ°è¾¾æ—¶å”¤é†’ç›‘å¬æ¥æ”¶çº¿ç¨‹
 	        port.notifyOnDataAvailable(true);
-	        //ÉèÖÃµ±Í¨ĞÅÖĞ¶ÏÊ±»½ĞÑÖĞ¶ÏÏß³Ì
+	        //è®¾ç½®å½“é€šä¿¡ä¸­æ–­æ—¶å”¤é†’ä¸­æ–­çº¿ç¨‹
 	        port.notifyOnBreakInterrupt(true);
 	}    
 	    

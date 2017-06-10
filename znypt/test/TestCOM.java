@@ -15,14 +15,14 @@ import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
 
 /**
- * ²âÊÔCOM´®¿Ú
+ * æµ‹è¯•COMä¸²å£
  * @author Administrator
  *
  */
 
 public class TestCOM {
 	/**
-	 * ²âÊÔµÃµ½com3´®¿ÚÁĞ±í
+	 * æµ‹è¯•å¾—åˆ°com3ä¸²å£åˆ—è¡¨
 	 */
 	
 	@Test
@@ -31,7 +31,7 @@ public class TestCOM {
 		System.out.println(com3List);
 	}
 	/**
-	 * ²âÊÔÉèÖÃCOM´®¿Ú²¨ÌØÂÊ
+	 * æµ‹è¯•è®¾ç½®COMä¸²å£æ³¢ç‰¹ç‡
 	 * @throws NoSuchPortException 
 	 * @throws PortInUseException 
 	 * @throws UnsupportedCommOperationException 

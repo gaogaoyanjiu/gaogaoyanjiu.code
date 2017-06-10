@@ -3,7 +3,7 @@ package gaogaoyanjiu.com.service.impl;
 import gaogaoyanjiu.com.service.BluetoothService;
 
 /**
- * À¶ÑÀÄ£¿é
+ * è“ç‰™æ¨¡å—
  * @author Administrator
  *
  */

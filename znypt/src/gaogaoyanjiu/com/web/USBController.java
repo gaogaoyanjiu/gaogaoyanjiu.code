@@ -1,7 +1,7 @@
 package gaogaoyanjiu.com.web;
 
 /**
- * USB通用串口模块
+ * USB閫氱敤涓插彛妯″潡
  * @author Administrator
  *
  */

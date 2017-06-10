@@ -1,7 +1,7 @@
 package gaogaoyanjiu.com.utils.serialPort.serialException;
 
 /**
- * ´Ó´®¿Ú¶ÁÈ¡Êı¾İÊ±³ö´í
+ * ä»ä¸²å£è¯»å–æ•°æ®æ—¶å‡ºé”™
  */
 public class ReadDataFromSerialPortFailure extends Exception {
 	private static final long serialVersionUID = 1L;
@@ -10,7 +10,7 @@ public class ReadDataFromSerialPortFailure extends Exception {
 
 	@Override
 	public String toString() {
-		return "´Ó´®¿Ú¶ÁÈ¡Êı¾İÊ±³ö´í£¡";
+		return "ä»ä¸²å£è¯»å–æ•°æ®æ—¶å‡ºé”™ï¼";
 	}
 	
 }

@@ -3,7 +3,7 @@ package gaogaoyanjiu.com.bean;
 import gaogaoyanjiu.com.service.BluetoothService;
 
 /**
- * À¶ÑÀÄ£¿é
+ * è“ç‰™æ¨¡å—
  * @author Administrator
  *
  */

@@ -2,7 +2,7 @@ package test;
 
 
 /**
- * 测试GSM手机通信
+ * 娴嬭瘯GSM鎵嬫満閫氫俊
  * @author Administrator
  *
  */

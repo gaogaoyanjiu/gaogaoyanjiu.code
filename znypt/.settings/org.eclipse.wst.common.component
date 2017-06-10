@@ -2,9 +2,10 @@
     <wb-module deploy-name="znypt">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/conf"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/res"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/中文"/>
         <property name="context-root" value="znypt"/>
         <property name="java-output-path" value="/znypt/build/classes"/>
     </wb-module>

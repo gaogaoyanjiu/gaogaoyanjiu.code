@@ -1,7 +1,7 @@
 package gaogaoyanjiu.com.utils;
 
 /**
- * ÈÕÆÚ¹¤¾ßÀà
+ * æ—¥æœŸå·¥å…·ç±»
  * @author Administrator
  *
  */

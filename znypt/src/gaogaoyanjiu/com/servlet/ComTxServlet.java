@@ -23,8 +23,8 @@ import gnu.io.SerialPortEventListener;
 import gnu.io.UnsupportedCommOperationException;
 
 /**
- * ´®¿ÚÊı¾İ½»»¥¿ØÖÆÆ÷
- * Ğ´Êı¾İ
+ * ä¸²å£æ•°æ®äº¤äº’æ§åˆ¶å™¨
+ * å†™æ•°æ®
  * @author zhangliang
  *
  */
@@ -41,41 +41,41 @@ public class ComTxServlet extends HttpServlet {
     }
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-				//ÉèÖÃ±àÂë
+				//è®¾ç½®ç¼–ç 
 				resp.setCharacterEncoding("UTF-8");
 				resp.setContentType("text/html;charset=UTF-8");
 
 				String str = req.getParameter("btn1");
-				//½«×Ö·û´®×ª»»Îª16½øÖÆ
+				//å°†å­—ç¬¦ä¸²è½¬æ¢ä¸º16è¿›åˆ¶
 				Integer vof = Integer.valueOf(str,16);
 				
 				int parseInt = vof;
 				System.out.println(parseInt);
-				//ÓëÉÏFFÇó³ö×îĞ¡µÄ16½øÖÆÊı¾İ
+				//ä¸ä¸ŠFFæ±‚å‡ºæœ€å°çš„16è¿›åˆ¶æ•°æ®
 				byte b=(byte) parseInt;
 				b=(byte) (parseInt & 0xFF);
 			    byte[] bt = new byte[]{b}; 
 			    
 			    
 				if (str!=null&&str.length()==2) {
-					//»ñµÃµ±Ç°ËùÓĞ¿ÉÓÃ´®¿Ú(·µ»ØÃ¶¾ÙÀàĞÍ)
+					//è·å¾—å½“å‰æ‰€æœ‰å¯ç”¨ä¸²å£(è¿”å›æšä¸¾ç±»å‹)
 				    Enumeration<CommPortIdentifier> portList = CommPortIdentifier.getPortIdentifiers();	
 			       
 				    while (portList.hasMoreElements()) {  
-			        	 //½«¿ÉÓÃ´®¿ÚÃûÖğ¸ö±éÀúÈ¡³öÔªËØ
+			        	 //å°†å¯ç”¨ä¸²å£åé€ä¸ªéå†å–å‡ºå…ƒç´ 
 			        	portId = (CommPortIdentifier) portList.nextElement(); 
-			            //ÅĞ¶ÏÊÇ²»ÊÇ´®¿Ú
+			            //åˆ¤æ–­æ˜¯ä¸æ˜¯ä¸²å£
 			          if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL) { 
-			            	//ÅĞ¶Ï¶Ë¿ÚºÅÊÇ·ñÊÇCOM3
+			            	//åˆ¤æ–­ç«¯å£å·æ˜¯å¦æ˜¯COM3
 			                if (portId.getName().equals("COM3")) {  
 							    System.out.println(bt);
-							    //´ò¿ªÍ¨Ñ¶  
+							    //æ‰“å¼€é€šè®¯  
 					            try {
 									serialPort = (SerialPort) portId.open("COM3", 2000);
 								 
-					            serialPort.setRTS(false);//´Ë²½Öè¿ÉÒÔÊ¡ÂÔ£¬²Â²âÄ¬ÈÏÇé¿ö¼´ÊÇfalse  
-					            //ÉèÖÃÒ»ÏÂ´®¿ÚµÄ²¨ÌØÂÊµÈ²ÎÊı==1200,2400,4800,9600,14400,19200,115200
-					            //²ÎÊıËµÃ÷£º²ÎÊıÒ»:²¨ÌØÂÊ;²ÎÊı¶ş£ºÊı¾İÎ»;²ÎÊıÈı£ºÍ£Ö¹Î»£»²ÎÊıËÄ:ÆæÊıÅ¼ÊıĞ£ÑéÎ»
+					            serialPort.setRTS(false);//æ­¤æ­¥éª¤å¯ä»¥çœç•¥ï¼ŒçŒœæµ‹é»˜è®¤æƒ…å†µå³æ˜¯false  
+					            //è®¾ç½®ä¸€ä¸‹ä¸²å£çš„æ³¢ç‰¹ç‡ç­‰å‚æ•°==1200,2400,4800,9600,14400,19200,115200
+					            //å‚æ•°è¯´æ˜ï¼šå‚æ•°ä¸€:æ³¢ç‰¹ç‡;å‚æ•°äºŒï¼šæ•°æ®ä½;å‚æ•°ä¸‰ï¼šåœæ­¢ä½ï¼›å‚æ•°å››:å¥‡æ•°å¶æ•°æ ¡éªŒä½
 					           
 									serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 								} catch (Exception e) {
@@ -83,10 +83,10 @@ public class ComTxServlet extends HttpServlet {
 								}  
 					           
 					            
-					            in = serialPort.getInputStream();//»ñÈ¡ÊäÈëÁ÷ 
+					            in = serialPort.getInputStream();//è·å–è¾“å…¥æµ 
 					            out = serialPort.getOutputStream(); 
 					            
-					            //Ñ­»·Êä³öµ½COM3¿Ú
+					            //å¾ªç¯è¾“å‡ºåˆ°COM3å£
 					           // while(true){
 						            out.write(bt);  
 						            out.flush();  
