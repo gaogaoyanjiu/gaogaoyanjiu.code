@@ -1,0 +1,5 @@
+由于OpenCV更新到2.4.4版本,JavaCV把直接调用的*.dll文件放置到Jar包中,这样搭建JavaCV的环境就更容易了,到 http://download.csdn.net/detail/gctianyou/5169578   下载JavaCV的Jar包(里面有一个基于Camshift算法实现的摄像头下运动物体的跟踪,程序名为 JavaCVCamShift.Java ),注意这里只能基于32位Windows平台开发.
+打开Eclipse,新建一个Java工程项目,比如项目的名称为MyJavaCV.然后把刚才下载的包( 4个jar包)导入到工程项
+目MyJavaCV中(怎么去导入,不会的自己到网上找答案).找到src目录新建一个包名为 JavaCV.Test ,把文件
+JavaCVCamShift.java 复制到里面去.运行程序(前提是你的机器必需装摄像头),出现视频窗口后,用鼠标在窗口内拖
+动选择想要跟踪的对象
