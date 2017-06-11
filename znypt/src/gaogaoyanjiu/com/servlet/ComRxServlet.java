@@ -3,6 +3,7 @@ package gaogaoyanjiu.com.servlet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -46,10 +47,20 @@ public class ComRxServlet extends HttpServlet {
 				//检查session是否存在已经使用的COM端口
 				HttpSession session = req.getSession(); 
 				String COM = (String) session.getAttribute("COM"); 
-				//如果不为空,先关闭端口
-				if (COM!=null&&"".equals(COM)) {
-					
-					SerialTool.closePort(serialPort);
+				
+				
+				
+				if (COM!=null&&!"".equals(COM)) {
+					//查询出占用的端口
+					List<String> findPort = SerialTool.findPort();
+					//如果不为空,先关闭端口
+					for (String port : findPort) {
+						if (COM.equals(port)) {
+							SerialTool serialTool = SerialTool.getSerialTool();
+							SerialPort serial = serialTool.getSerialPort();
+							SerialTool.closePort(serial);
+						}
+					}
 				}
 				
 				//获取已经连接的串口

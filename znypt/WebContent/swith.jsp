@@ -116,8 +116,11 @@
 			return false;	
 		});
 	
-	
-	
+		/* 播放视频 */
+		 $('.overview').on('click', '.j-play', function () {
+             $videoWrap.show();
+             $video.trigger('play');
+         });
 	
 	/* $("#submit").click(function(){
 		$("form").submit(function(e){
@@ -174,6 +177,19 @@
                     <p>
                        	 智能云平台最初的发展主要以灯光遥控控制、电器远程控制和电动窗帘控制为主，随着行业的发展，智能控制的功能越来越多，控制的对象不断扩展，控制的联动场景要求更高，其不断延伸到家庭安防报警、背景音乐、可视对讲、门禁指纹控制等领域，可以说智能云平台几乎可以涵盖所有传统的弱电行业，市场发展前景诱人，因此和其产业相关的各路品牌不约而同加大力度争夺智能云平台业务，市场渐成春秋争霸之势。 
                     </p>
+                    
+                    <a class="btn btn-primary btn-trial" target="_blank" href="https://www.baidu.com?eid=46673" onclick="ga('send', 'event', 'Meiqia_chat link', 'link_click','www.baidu.com');">
+                    	申请试用
+                    </a>
+					<a class="btn btn-default j-play" href="javascript:;">
+						观看视频
+					<i class="icon icon-play"></i>
+					</a>
+                    
+                    <!-- <video src="video/kujialetool.mp4" preload="none" width="100%" height="100%"></video> -->
+                   
+                    <!-- <video src="video/kujialetool.mp4" width="100%" height="100%"></video> -->
+                    <br/>
                     <img src="img/ddd.jpg" class="img-responsive" alt="这是一张图片" width="62%" height="62%"/>
                 </div>
                 <div class="col-md-1"></div>
@@ -514,26 +530,49 @@
                 <div class="col-md-8">
                     <h1>摄像头</h1>
                     <p>
-                       	 智能云平台最初的发展主要以灯光遥控控制、电器远程控制和电动窗帘控制为主，随着行业的发展，智能控制的功能越来越多，控制的对象不断扩展，控制的联动场景要求更高，其不断延伸到家庭安防报警、背景音乐、可视对讲、门禁指纹控制等领域，可以说智能云平台几乎可以涵盖所有传统的弱电行业，市场发展前景诱人，因此和其产业相关的各路品牌不约而同加大力度争夺智能云平台业务，市场渐成春秋争霸之势。 
+						无线摄像头是将无线接收器嵌入到网络摄像机里的新型监控摄像机。
+						它使用WIFI频道，符合IEEE 802.11B/G标准协议。
+						WIFI是由AP(Access Point)和无线网卡组成的无线网络。
+						AP一般称为网络桥接器或接入点，它是当作传统的有线局域网络与无线局域网络之间的桥梁，因此任何一台装有无线网卡的PC均可透过AP去分享有线局域网络甚至广域网络的资源，
+						其工作原理相当于一个内置无线发射器的HUB或者是路由，而无线网卡则是负责接收由AP所发射信号的CLIENT端设备。
+						有了AP，就像一般有线网络的交换机或路由器一般，无线工作站可以快速且轻易地与网络相连。
+						简言之，当交换机的一端接入了无线AP或无线路由器，在无线AP/无线路由器信号覆盖范围内，安装一个或多个无线摄像头，就组成了一个简单的无线视频监控系统，而音视频显示和管理通过局域网内（无线网内或接入交换机）的电脑来实现，云台控制信号同样通过无线来传输。
+						如果无线AP或路由接入了互联网，对无线摄像进行动态域名解析和端口映射之后，便可实现远程音视频监控了。
                     </p>
-                    <img src="img/ddd.jpg" class="img-responsive" alt="这是一张图片" width="62%" height="62%"/>
+                    <img src="img/wifi.jpg" class="img-responsive" alt="这是一张图片" width="62%" height="62%"/>
                 </div>
                 <div class="col-md-2">
+                
                  <!-- 测试按钮 -->
-                <br/> <br/> <br/> <br/>
-                <br/> <br/> <br/> <br/>
+                <!-- <br/> <br/> <br/> <br/>
+                <br/> <br/> <br/> <br/> -->
                 
                  <form action="" method="post">
 	                <table>
+	                <tr>
+	                <td colspan="2" style="width: 50%;">
+	                <%-- <iframe src="${pageContext.request.contextPath}/TryDemo.jsp"></iframe> --%>
+	                <!-- 插入页面 -->
+	               <%--  <jsp:include page="${pageContext.request.contextPath}/TryDemo.jsp">
+		                <jsp:param value="username" name="tom"/>
+		                <jsp:param value="pwd" name="123"/>
+	                </jsp:include> --%>
+	                
+	                <%@ include file="TryDemo.jsp" %>
+	                
+	                </td>
+	                
+	                </tr>
+	                
+	               
 		                <tr>
 			                <td>
-								摄像头1<button class="mwui-switch-btn" id="sxt1"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
+									摄像头1<button class="mwui-switch-btn" id="sxt1"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
 			                </td>
 			                
-			                <td style="width:15px;display:inline-block;"></td>
 			                
 			                <td>
-								摄像头2<button class="mwui-switch-btn" id="sxt2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
+									摄像头2<button class="mwui-switch-btn" id="sxt2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
 			                </td>
 			          </tr>
 	               </table>

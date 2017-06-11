@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.TooManyListenersException;
+
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
+
+import org.apache.tomcat.util.http.fileupload.RequestContext;
 
 import gaogaoyanjiu.com.utils.serialPort.serialException.NoSuchPort;
 import gaogaoyanjiu.com.utils.serialPort.serialException.NotASerialPort;
@@ -323,6 +327,15 @@ public class SerialTool {
     						//closePort(openPort);
     						//睡一会儿
     						//Thread.sleep(500);//50~~1400  
+    						
+    						
+    						/*//存值
+							HttpSession session=ServletActionContext.getRequest().getSession();
+			                session.setAttribute("test","session值");
+			                 //取值
+			                HttpSession session1=ServletActionContext.getRequest().getSession();
+			                  System.out.println(session1.getAttribute("test"));*/
+			                  
     					} catch (Exception e2) {
     						e2.printStackTrace();
     					}
@@ -347,6 +360,8 @@ public class SerialTool {
 					while(true){
 						try {
 							final SerialPort openPort = openPort("COM3", 9600);
+							
+							
 							//发送数据
 							sendToPort(openPort, bt);
 							//16进制转换
@@ -373,7 +388,31 @@ public class SerialTool {
     }
     
     
-    public static void main(String[] args) {
+    public List<String> getCommList() {
+	return commList;
+}
+
+public void setCommList(List<String> commList) {
+	this.commList = commList;
+}
+
+public SerialPort getSerialPort() {
+	return serialPort;
+}
+
+public void setSerialPort(SerialPort serialPort) {
+	this.serialPort = serialPort;
+}
+
+public static long getSerialversionuid() {
+	return serialVersionUID;
+}
+
+public static void setSerialTool(SerialTool serialTool) {
+	SerialTool.serialTool = serialTool;
+}
+
+	public static void main(String[] args) {
     	//读数据
     	testReadData();
     	
