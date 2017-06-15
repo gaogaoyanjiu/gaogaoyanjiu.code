@@ -542,7 +542,11 @@
                     <img src="img/wifi.jpg" class="img-responsive" alt="这是一张图片" width="62%" height="62%"/>
                 </div>
                 <div class="col-md-2">
+                 <!-- 测试按钮 -->
+                <br/> <br/> <br/> <br/>
+                <br/> <br/> <br/> <br/>
                 
+<<<<<<< HEAD
                  <!-- 测试按钮 -->
                 <!-- <br/> <br/> <br/> <br/>
                 <br/> <br/> <br/> <br/> -->
@@ -573,6 +577,19 @@
 			                
 			                <td>
 									摄像头2<button class="mwui-switch-btn" id="sxt2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
+=======
+                 <form action="" method="post">
+	                <table>
+		                <tr>
+			                <td>
+								摄像头1<button class="mwui-switch-btn" id="sxt1"><span change="OFF">ON</span><input type="hidden" name="show_icon2" value="1" /></button> 
+			                </td>
+			                
+			                <td style="width:15px;display:inline-block;"></td>
+			                
+			                <td>
+								摄像头2<button class="mwui-switch-btn" id="sxt2"><span change="ON" class="off">OFF</span><input type="hidden" name="open_topbar2" value="0" /></button> 
+>>>>>>> refs/remotes/origin/master
 			                </td>
 			          </tr>
 	               </table>

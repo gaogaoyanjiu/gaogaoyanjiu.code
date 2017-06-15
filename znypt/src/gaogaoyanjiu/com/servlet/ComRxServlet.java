@@ -47,6 +47,7 @@ public class ComRxServlet extends HttpServlet {
 				//检查session是否存在已经使用的COM端口
 				HttpSession session = req.getSession(); 
 				String COM = (String) session.getAttribute("COM"); 
+<<<<<<< HEAD
 				
 				
 				
@@ -64,6 +65,14 @@ public class ComRxServlet extends HttpServlet {
 				}
 				
 				//获取已经连接的串口
+=======
+				//如果不为空,先关闭端口
+				if (COM!=null&&"".equals(COM)) {
+					
+					SerialTool.closePort(serialPort);
+				}
+				
+>>>>>>> refs/remotes/origin/master
 				session.setAttribute("COM", "COM3"); 
 				//session.removeAttribute("key"); 
 				//session.invalidate(); //删除所有session中保存的键
